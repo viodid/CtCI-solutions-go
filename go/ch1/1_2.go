@@ -8,6 +8,15 @@ package main
 // create hashmap to store a counter for each character for the s1
 // create a second hashmap with the s2
 // if both hashmaps have the same ocurrences, true else false
+
+// optimization 1: use only one hashmap and decretment the occurrences
+// any given value below 0 is not permutation
+// at the end all the occurrences should be 0 to be a permutation
+
+// optimization 2: use an array to store the value counter and the index to 
+// store the character (this assumes ASCII or relative)
+
+// time: O(n) - space: O(c) c=character set
 func checkPermutation(s1, s2 string) bool {
 	if len(s1) == 0 || s1 == s2 || len(s1) != len(s2) {
 		return false
