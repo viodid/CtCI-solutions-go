@@ -3,15 +3,15 @@ package main
 import "testing"
 
 func TestIsUnique(t *testing.T) {
-	tests := []struct{
-		input string
+	tests := []struct {
+		input    string
 		expected bool
 	}{
-		{ "asdf", true },
-		{ "asdfqwer12345", true },
-		{ "asdfa", false },
-		{ "", false },
-		{ " ", true },
+		{"asdf", true},
+		{"asdfqwer12345", true},
+		{"asdfa", false},
+		{"", true},
+		{" ", true},
 	}
 
 	for _, tt := range tests {
