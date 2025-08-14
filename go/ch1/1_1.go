@@ -1,6 +1,6 @@
 package main
 
-// time: O(a) a = character set - space: O(a)
+// time: O(c) c = character set - spcce: O(c)
 func IsUnique(str string) bool {
 
 	var hashmap = make(map[rune]bool)
@@ -16,6 +16,24 @@ func IsUnique(str string) bool {
 		} else {
 			return false
 		}
+	}
+	return true
+}
+
+// Asumming only aphabetical ASCII characters
+// time: O(c) c = character set - O(1)
+func IsUniquev2(str string) bool {
+	if len(str) >= 26 {
+		return false
+	}
+
+	var check int
+	for _, l := range str {
+		val := int(l) - int('a')
+		if check & (1 << val) > 0 {
+			return false
+		}
+		check |= (1 << val)
 	}
 	return true
 }
