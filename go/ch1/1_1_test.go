@@ -15,9 +15,9 @@ func TestIsUnique(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		if IsUnique(tt.input) != tt.expected {
-			t.Fatalf("IsUnique(%s) does not return %t. got=%t\n",
-				tt.input, tt.expected, IsUnique(tt.input))
+		if isUnique(tt.input) != tt.expected {
+			t.Fatalf("isUnique(%s) does not return %t. got=%t\n",
+				tt.input, tt.expected, isUnique(tt.input))
 		}
 	}
 }
@@ -34,9 +34,9 @@ func TestIsUniquev2(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		if IsUniquev2(tt.input) != tt.expected {
-			t.Fatalf("IsUnique(%s) does not return %t. got=%t\n",
-				tt.input, tt.expected, IsUniquev2(tt.input))
+		if isUniquev2(tt.input) != tt.expected {
+			t.Fatalf("isUnique(%s) does not return %t. got=%t\n",
+				tt.input, tt.expected, isUniquev2(tt.input))
 		}
 	}
 }
