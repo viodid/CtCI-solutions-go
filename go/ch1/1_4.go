@@ -46,3 +46,8 @@ func palindromePermutation(input string) bool {
 	}
 	return true
 }
+
+// TODO: for this version, try to optimize the big O space 
+// with an int_32 vector
+func palindromePermutationv2(input string) bool {
+}
