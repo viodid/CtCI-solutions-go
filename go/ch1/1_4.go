@@ -1,0 +1,46 @@
+package main
+
+import (
+	"strings"
+	"unicode"
+)
+
+// assumptions: an empty string or non alphabetical is not a palindrome permutation
+// a single characeter is a valid palindrome permutation
+// unicode characters are vaild characters
+
+// traverse the string and create a hashmap as: character -> occurrences
+// traverse the hashmap and check whether all the keys has an even number
+// only one key can have an odd number (in case of an odd length permutation)
+func palindromePermutation(input string) bool {
+	if len(input) == 0 {
+		return false
+	}
+	charHashMap := make(map[rune]int)
+	for _, ch := range strings.ToLower(input) {
+		if !unicode.IsLetter(ch) {
+			continue
+		}
+		_, ok := charHashMap[ch]
+		if !ok {
+			charHashMap[ch] = 1
+		} else {
+			charHashMap[ch] += 1
+		}
+	}
+
+	if len(charHashMap) == 0 {
+		return false
+	}
+
+	checkOdd := false
+	for _, v := range charHashMap {
+		if v % 2 == 1 {
+			if checkOdd == true {
+				return false
+			}
+			checkOdd = true
+		}
+	}
+	return true
+}
