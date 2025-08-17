@@ -6,7 +6,9 @@ package main
 // as long as both hashmaps are equal or different by one repetition
 // the condition is true
 // the difference between first and seccond approaches is the big O space time
-// and the int bit vector needs to assume ASCII characters only
+// and the int bit vector needs to assume ASCII alphabetical characters only
+
+// time: O(n) - space: O(c) c = character set
 func oneWay(s1, s2 string) bool {
 	s1HashMap := createHashMap(s1)
 	s2HashMap := createHashMap(s2)
@@ -46,6 +48,7 @@ func oneWay(s1, s2 string) bool {
 	return true
 }
 
+
 func createHashMap(input string) map[rune]int {
 	hashMap := map[rune]int{}
 	for _, ch := range input {
@@ -65,3 +68,4 @@ func abs(x, y int) int {
 	}
 	return y - x
 }
+

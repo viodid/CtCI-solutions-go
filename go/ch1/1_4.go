@@ -47,8 +47,34 @@ func palindromePermutation(input string) bool {
 	return true
 }
 
-// TODO: for this version, try to optimize the big O space 
-// with an int_32 vector
+// for this version, big O space is optimized with an int_32 vector (only 26 possible ASCII alphabetical characters)
+// and the character counter can be optimized using a boolean,
+// since odd or even is the only property that needs to be stored
+
+// time: O(n) - space: O(1)
 func palindromePermutationv2(input string) bool {
-	return true
+	if len(input) == 0 {
+		return false
+	}
+
+	var intVec int32
+	flagIsPermutation := false
+
+	for _, ch := range strings.ToLower(input) {
+		byteChar := byte(ch)
+		if byteChar < 'a' || byteChar > 'z' {
+			continue
+		}
+		flagIsPermutation = true
+		intVec ^= (1 << (byteChar - 'a'))
+	}
+
+	// this flags helps to check the edge case in which the string is an even
+	// palindrome and hence the int vector is all zeros vs an int vector with all
+	// zeros bc no alphabetical character is found
+	if !flagIsPermutation {
+		return false
+	}
+
+	return intVec & (intVec - 1) == 0
 }
