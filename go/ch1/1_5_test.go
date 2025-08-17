@@ -16,6 +16,7 @@ func TestOneWay(t *testing.T) {
 		{ "pale", "pale", true },
 		{ "a", "", true },
 		{ "ab", "", false },
+		{ "hey there", "hi", false },
 	}
 
 	for _, tt := range tests {
