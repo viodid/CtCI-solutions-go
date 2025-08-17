@@ -57,7 +57,7 @@ func palindromePermutationv2(input string) bool {
 		return false
 	}
 
-	var intVec int32
+	var bitVec int32
 	flagIsPermutation := false
 
 	for _, ch := range strings.ToLower(input) {
@@ -66,15 +66,15 @@ func palindromePermutationv2(input string) bool {
 			continue
 		}
 		flagIsPermutation = true
-		intVec ^= (1 << (byteChar - 'a'))
+		bitVec ^= (1 << (byteChar - 'a'))
 	}
 
 	// this flags helps to check the edge case in which the string is an even
-	// palindrome and hence the int vector is all zeros vs an int vector with all
+	// palindrome and hence the bit vector is all zeros vs a bit vector with all
 	// zeros bc no alphabetical character is found
 	if !flagIsPermutation {
 		return false
 	}
 
-	return intVec & (intVec - 1) == 0
+	return bitVec & (bitVec - 1) == 0
 }
