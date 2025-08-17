@@ -1,7 +1,5 @@
 package main
 
-import "math"
-
 // this problem can be solved in a couple of different ways
 // the first way implies a hashmap and the second an int vector to
 // store the state of the char -> repetitions
@@ -13,6 +11,8 @@ func oneWay(s1, s2 string) bool {
 	s1HashMap := createHashMap(s1)
 	s2HashMap := createHashMap(s2)
 
+	var bigger map[rune]int
+	var smaller map[rune]int
 	if len(s1HashMap) > len(s2HashMap) {
 		bigger = s1HashMap
 		smaller = s2HashMap
@@ -24,17 +24,16 @@ func oneWay(s1, s2 string) bool {
 	difference := false
 
 	for k, v := range bigger {
-		if _, ok := smaller; !ok {
+		if _, ok := smaller[k]; !ok {
 			if v > 1 {
 				return false
-			} else if v == 1 {
-				if difference {
-					return false
-				}
-				difference = true
+			} else if difference {
+				return false
 			}
+			difference = true
+			continue
 		}
-		valueDiff := math.Abs(v - smaller[k])
+		valueDiff := abs(v, smaller[k])
 		if  valueDiff > 1 {
 			return false
 		} else if valueDiff == 1 {
@@ -44,7 +43,6 @@ func oneWay(s1, s2 string) bool {
 			difference = true
 		}
 	}
-
 	return true
 }
 
@@ -59,4 +57,11 @@ func createHashMap(input string) map[rune]int {
 		}
 	}
 	return hashMap
+}
+
+func abs(x, y int) int {
+	if x > y {
+		return x - y
+	}
+	return y - x
 }
