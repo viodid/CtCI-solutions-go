@@ -10,6 +10,7 @@ func TestOneWay(t *testing.T) {
 	}{
 		{ "pale", "ple", true },
 		{ "pales", "pale", true },
+		{ "pale", "bales", false },
 		{ "pale", "bale", true },
 		{ "pale", "bake", false },
 		{ "", "", true },

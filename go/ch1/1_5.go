@@ -1,12 +1,8 @@
 package main
 
-// this problem can be solved in a couple of different ways
-// the first way implies a hashmap and the second an int vector to
-// store the state of the char -> repetitions
+// this problem can be solved with one hashmap for each string
 // as long as both hashmaps are equal or different by one repetition
 // the condition is true
-// the difference between first and seccond approaches is the big O space time
-// and the int bit vector needs to assume ASCII alphabetical characters only
 
 // time: O(n) - space: O(c) c = character set
 func oneWay(s1, s2 string) bool {
