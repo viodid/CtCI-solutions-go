@@ -8,15 +8,15 @@ func TestRotateMatrix(t *testing.T) {
 		expected [][]uint8
 	}{
 		{
-			intput: [][]uint8{
-				{0}
+			input: [][]uint8{
+				{0},
 			},
 			expected: [][]uint8{
-				{0}
+				{0},
 			},
 		},
 		{
-			intput: [][]uint8{
+			input: [][]uint8{
 				{0, 1},
 				{2, 3},
 			},
@@ -26,7 +26,7 @@ func TestRotateMatrix(t *testing.T) {
 			},
 		},
 		{
-			intput: [][]uint8{
+			input: [][]uint8{
 				{10, 42, 69},
 				{14, 13, 69},
 				{14, 30, 11},
@@ -40,9 +40,15 @@ func TestRotateMatrix(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		if rotateMatrix(tt.input) != tt.expected {
-			t.Errorf("rotateMatrix(%v) hasn't returned %v\n",
-				tt.input, tt.expected)
+		size := len(tt.input)
+		output := rotateMatrix(tt.input)
+		for i := 0; i < size; i++ {
+			for j := 0; j < size; j++ {
+				if output[i][j] != tt.expected[i][j] {
+					t.Errorf("rotateMatrix[%d][%d] is wrong. got=%d. expected=%d\n",
+					i, j, output[i][j], tt.expected[i][j])
+				}
+			}
 		}
 	}
 }
