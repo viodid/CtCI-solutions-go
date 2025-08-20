@@ -29,20 +29,18 @@ func rotateMatrix(image [][]uint8) [][]uint8 {
 }
 
 // optimization 1
-// rotate the matrix in place. big O(1) space
-// func rotateMatrixv2(image [][]uint8) [][]uint8 {
-// 	if image == nil || len(image) <= 1  {
-// 		return image
-// 	}
-// 	for i := 0; i < size; i++ {
-// 		for j := 0; j < math.Ceil(size / 2); j++ {
-// 			tmp := image[i][j]
-// 			image[i][j] = image[size - 1 - j][i]
-// 			image
-// 		}
-// 	}
-// 	return image
-// }
+// for this optimization, we are going to replace every index in place
+// that would make the big O space constant
+// rotate every layer (or side) starting from the outtermost layer and
+// woring our way inwards. Left -> top -> right -> bottom
+
+// time: O(n^2) n = side length - space: O(1) 
+func rotateMatrixv2(image [][]uint8) [][]uint8 {
+	if image == nil || len(image) <= 1  {
+		return image
+	}
+	return image
+}
 
 // optimization 2
 // allocate the matrix as a contiguous 2D array (slighty better big O time)
