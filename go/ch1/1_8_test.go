@@ -17,10 +17,10 @@ func TestZeroMatrix(t *testing.T) {
 		},
 		{
 			input: [][]uint8{
-				{1},
+				{1, 0},
 			},
 			expected: [][]uint8{
-				{1},
+				{0, 0},
 			},
 		},
 		{
@@ -48,11 +48,13 @@ func TestZeroMatrix(t *testing.T) {
 				{10, 0, 69},
 				{14, 13, 0},
 				{14, 30, 11},
+				{19, 15, 18},
 			},
 			expected: [][]uint8{
 				{0, 0, 0},
 				{0, 0, 0},
 				{14, 0, 0},
+				{19, 0, 0},
 			},
 		},
 		{
