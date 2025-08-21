@@ -39,6 +39,21 @@ func rotateMatrixv2(image [][]uint8) [][]uint8 {
 	if image == nil || len(image) <= 1  {
 		return image
 	}
+
+	size := len(image)
+	for layer := 0; layer < size / 2; layer++ {
+		first := layer
+		last := size - 1 - layer
+		for i := first; i < last; i++ {
+			offset := i - first 
+			tmp := image[first][i] // top left corner's layer
+			image[first][i] = image[last - offset][first] // top[i] = left[i]
+			image[last - offset][first] = image[last][last - offset] // left[i] = bot[i]
+			image[last][last - offset] = image[i][last] // bot[i] = right[i]
+			image[i][last] = tmp // right[i] = top[i](tmp)
+		}
+	}
+
 	return image
 }
 
