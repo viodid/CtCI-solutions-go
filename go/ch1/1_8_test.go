@@ -38,7 +38,7 @@ func TestZeroMatrix(t *testing.T) {
 			},
 			expected: [][]int{
 				{0, 0},
-				{2, 0},
+				{0, 3},
 			},
 		},
 		{
