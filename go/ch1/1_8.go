@@ -49,8 +49,12 @@ func zeroMatrixv2(matrix [][]int) [][]int {
 		for x := range matrix[y] {
 			if matrix[y][x] == 0 {
 				if y == 0 || x == 0 {
-					rowHasZero = y == 0
-					columnHasZero = x == 0
+					if !rowHasZero {
+						rowHasZero = y == 0
+					}
+					if !columnHasZero {
+						columnHasZero = x == 0
+					}
 					continue
 				}
 				matrix[0][x] = 0
