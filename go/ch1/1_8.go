@@ -38,4 +38,59 @@ func setAxisZero(matrix [][]int, y, x int) {
 	}
 }
 
-// TODO: O(1) space - use first row and column to store state
+// time: O(hw) - O(1) space - use first row and column to store state
+func zeroMatrixv2(matrix [][]int) [][]int {
+	if matrix == nil || len(matrix) == 0 || len(matrix) * len(matrix[0]) <= 1 {
+		return matrix
+	}
+	columnHasZero := false
+	rowHasZero := false
+	for y := range matrix {
+		for x := range matrix[y] {
+			if matrix[y][x] == 0 {
+				if y == 0 || x == 0 {
+					rowHasZero = y == 0
+					columnHasZero = x == 0
+					continue
+				}
+				matrix[0][x] = 0
+				matrix[y][0] = 0
+			}
+		}
+	}
+	for i := 1; i < len(matrix); i++ {
+		if matrix[i][0] == 0 {
+			nullifyRow(matrix, i)
+		}
+	}
+	for i := 1; i < len(matrix[0]); i++ {
+		if matrix[0][i] == 0 {
+			nullifyColumn(matrix, i)
+		}
+	}
+	if columnHasZero {
+		nullifyColumn(matrix, 0)
+	}
+	if rowHasZero {
+		nullifyRow(matrix, 0)
+	}
+	return matrix
+}
+
+func nullifyRow(matrix [][]int, y int) {
+	width := len(matrix[0])
+	for i := 0; i < width; i++ {
+		if matrix[y][i] != 0 {
+			matrix[y][i] = 0
+		}
+	}
+}
+
+func nullifyColumn(matrix [][]int, x int) {
+	height := len(matrix)
+	for i := 0; i < height; i++ {
+		if matrix[i][x] != 0 {
+			matrix[i][x] = 0
+		}
+	}
+}

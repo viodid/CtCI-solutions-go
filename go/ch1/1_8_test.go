@@ -2,86 +2,100 @@ package main
 
 import "testing"
 
-var TESTS = []struct{
-	input [][]int
-	expected [][]int
-}{
-	{
-		input: nil,
-		expected: nil,
-	},
-	{
-		input: [][]int{},
-		expected: [][]int{},
-	},
-	{
-		input: [][]int{
-			{0},
-		},
-		expected: [][]int{
-			{0},
-		},
-	},
-	{
-		input: [][]int{
-			{1, 0},
-		},
-		expected: [][]int{
-			{0, 0},
-		},
-	},
-	{
-		input: [][]int{
-			{0, 1},
-			{2, 3},
-		},
-		expected: [][]int{
-			{0, 0},
-			{0, 3},
-		},
-	},
-	{
-		input: [][]int{
-			{4, 1},
-			{2, 3},
-		},
-		expected: [][]int{
-			{4, 1},
-			{2, 3},
-		},
-	},
-	{
-		input: [][]int{
-			{10, 0, 69},
-			{14, 13, 0},
-			{14, 30, 11},
-			{19, 15, 18},
-		},
-		expected: [][]int{
-			{0, 0, 0},
-			{0, 0, 0},
-			{14, 0, 0},
-			{19, 0, 0},
-		},
-	},
-	{
-		input: [][]int{
-			{71, 72, 73, 74},
-			{10, 0, 69, 51},
-			{15, 13, 68, 52},
-			{14, 30, 11, 0},
-		},
-		expected: [][]int{
-			{71, 0, 73, 0},
-			{0, 0, 0, 0},
-			{15, 0, 68, 0},
-			{0, 0, 0, 0},
-		},
-	},
-}
 
 func TestZeroMatrix(t *testing.T) {
-	for _, tt := range TESTS {
+	tests := []struct{
+		input [][]int
+		expected [][]int
+	}{
+		{
+			input: nil,
+			expected: nil,
+		},
+		{
+			input: [][]int{},
+			expected: [][]int{},
+		},
+		{
+			input: [][]int{
+				{0},
+			},
+			expected: [][]int{
+				{0},
+			},
+		},
+		{
+			input: [][]int{
+				{1, 0},
+			},
+			expected: [][]int{
+				{0, 0},
+			},
+		},
+		{
+			input: [][]int{
+				{0, 1},
+				{2, 3},
+			},
+			expected: [][]int{
+				{0, 0},
+				{0, 3},
+			},
+		},
+		{
+			input: [][]int{
+				{4, 1},
+				{2, 3},
+			},
+			expected: [][]int{
+				{4, 1},
+				{2, 3},
+			},
+		},
+		{
+			input: [][]int{
+				{10, 0, 69},
+				{14, 13, 0},
+				{14, 30, 11},
+				{19, 15, 18},
+			},
+			expected: [][]int{
+				{0, 0, 0},
+				{0, 0, 0},
+				{14, 0, 0},
+				{19, 0, 0},
+			},
+		},
+		{
+			input: [][]int{
+				{0, 0, 69},
+				{14, 13, 1},
+				{14, 30, 11},
+				{19, 15, 18},
+			},
+			expected: [][]int{
+				{0, 0, 0},
+				{0, 0, 1},
+				{0, 0, 11},
+				{0, 0, 18},
+			},
+		},
+		{
+			input: [][]int{
+				{71, 72, 73, 74},
+				{10, 0, 69, 51},
+				{15, 13, 68, 52},
+				{14, 30, 11, 0},
+			},
+			expected: [][]int{
+				{71, 0, 73, 0},
+				{0, 0, 0, 0},
+				{15, 0, 68, 0},
+				{0, 0, 0, 0},
+			},
+		},
+	}
+	for _, tt := range tests {
 		if tt.input == nil {
 			if zeroMatrix(tt.input) != nil {
 				t.Errorf("zeroMatrix(%v) is wrong. got=%v. expected=%v\n",
@@ -112,9 +126,100 @@ func TestZeroMatrix(t *testing.T) {
 
 
 func TestZeroMatrixv2(t *testing.T) {
-	for _, tt := range TESTS {
+	tests := []struct{
+		input [][]int
+		expected [][]int
+	}{
+		{
+			input: nil,
+			expected: nil,
+		},
+		{
+			input: [][]int{},
+			expected: [][]int{},
+		},
+		{
+			input: [][]int{
+				{0},
+			},
+			expected: [][]int{
+				{0},
+			},
+		},
+		{
+			input: [][]int{
+				{1, 0},
+			},
+			expected: [][]int{
+				{0, 0},
+			},
+		},
+		{
+			input: [][]int{
+				{0, 1},
+				{2, 3},
+			},
+			expected: [][]int{
+				{0, 0},
+				{0, 3},
+			},
+		},
+		{
+			input: [][]int{
+				{4, 1},
+				{2, 3},
+			},
+			expected: [][]int{
+				{4, 1},
+				{2, 3},
+			},
+		},
+		{
+			input: [][]int{
+				{10, 0, 69},
+				{14, 13, 0},
+				{14, 30, 11},
+				{19, 15, 18},
+			},
+			expected: [][]int{
+				{0, 0, 0},
+				{0, 0, 0},
+				{14, 0, 0},
+				{19, 0, 0},
+			},
+		},
+		{
+			input: [][]int{
+				{0, 0, 69},
+				{14, 13, 1},
+				{14, 30, 11},
+				{19, 15, 18},
+			},
+			expected: [][]int{
+				{0, 0, 0},
+				{0, 0, 1},
+				{0, 0, 11},
+				{0, 0, 18},
+			},
+		},
+		{
+			input: [][]int{
+				{71, 72, 73, 74},
+				{10, 0, 69, 51},
+				{15, 13, 68, 52},
+				{14, 30, 11, 0},
+			},
+			expected: [][]int{
+				{71, 0, 73, 0},
+				{0, 0, 0, 0},
+				{15, 0, 68, 0},
+				{0, 0, 0, 0},
+			},
+		},
+	}
+	for _, tt := range tests {
 		if tt.input == nil {
-			if zeroMatrix(tt.input) != nil {
+			if zeroMatrixv2(tt.input) != nil {
 				t.Errorf("zeroMatrixv2(%v) is wrong. got=%v. expected=%v\n",
 				tt.input, zeroMatrixv2(tt.input), tt.expected)
 			}
