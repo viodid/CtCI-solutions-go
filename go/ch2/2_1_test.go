@@ -76,5 +76,33 @@ func TestRemoveDups(t *testing.T) {
 			createLinkedList([]int{5, 2, 3, 5}),
 			createLinkedList([]int{5, 2, 3}),
 		},
+		{
+			createLinkedList([]int{5, 2, 3}),
+			createLinkedList([]int{5, 2, 3}),
+		},
+		{ nil, nil },
+		{
+			createLinkedList([]int{5, 2, 3, 3, 3, 3, 3, 3}),
+			createLinkedList([]int{5, 2, 3}),
+		},
+		{
+			createLinkedList([]int{5, 2, 3, 2, 4}),
+			createLinkedList([]int{5, 2, 3, 4}),
+		},
+		{
+			createLinkedList([]int{1, 2, 3, 4}),
+			createLinkedList([]int{1, 2, 3, 4}),
+		},
+		{
+			createLinkedList([]int{0}),
+			createLinkedList([]int{0}),
+		},
+	}
+
+	for _, tt := range tests {
+		if removeDups(tt.input) != tt.expected {
+			t.Errorf("removeDups(%T) does not return expected=%T\n",
+				tt.input, tt.expected)
+		}
 	}
 }
