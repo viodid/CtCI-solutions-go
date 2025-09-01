@@ -104,7 +104,7 @@ func TestRemoveDups(t *testing.T) {
 			if removeDups(tt.input) != nil {
 				t.Errorf("removeDups(nil) does not return expected=%+v\n", tt.expected)
 			}
-			break
+			continue
 		}
 		ll := removeDups(tt.input)
 		expectedNode := tt.expected.head
@@ -115,12 +115,14 @@ func TestRemoveDups(t *testing.T) {
 				node.content, idx)
 				break
 			}
+			t.Logf("expected: %d - output: %d\n", expectedNode.content, node.content)
 			if node.content != expectedNode.content {
 				t.Errorf("removeDups failed. got=%d expected=%d idx=%d\n",
 				node.content, expectedNode.content, idx)
 				break
 			}
 			expectedNode = expectedNode.next
+			idx++
 		}
 	}
 }
