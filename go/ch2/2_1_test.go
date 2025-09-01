@@ -4,28 +4,41 @@ import "testing"
 
 type Node[T any] struct {
 	content T
-	next *Node[T any]
+	next *Node[T]
 }
 
-func NewNode[T any](content T) *Node {
-	return &Node{content: content}
+func NewNode[T any](content T) *Node[T] {
+	return &Node[T]{content: content}
 }
 
 type LinkedList[T any] struct {
-	head *Node[T any]
-	tail *Node[T any]
+	head *Node[T]
+	tail *Node[T]
 }
 
-func NewLinkedList[T any](node *Node[T]) *LinkedList {
-	return LinkedList{head: node, tail: node}
+func NewLinkedList[T any](node *Node[T]) *LinkedList[T] {
+	return &LinkedList[T]{head: node, tail: node}
 }
 
 func (ll *LinkedList[T]) AddTail(node *Node[T]) {
-	tail.next = node
+	ll.tail.next = node
+	ll.tail = node
 }
 
 func (ll *LinkedList[T]) RemoveTail(node *Node[T]) {
-	for node := ll.head; node != nil; node.next {
+	// only one node left
+	if ll.head == ll.tail {
+		ll.head = nil
+		ll.tail= nil
+		return
+	}
+	// only two nodes left
+	if ll.head.next == ll.tail {
+		ll.head.next = nil
+		ll.tail = ll.head
+		return
+	}
+	for node := ll.head; node != nil; node = node.next {
 		if node.next.next == nil {
 			node.next = nil
 			ll.tail = node
@@ -39,17 +52,19 @@ func (ll *LinkedList[T]) AddFront(node *Node[T]) {
 	ll.head = node
 }
 
-func (ll *LinkedList[T]) RemoveHead(node *Node[T]) {
+func (ll *LinkedList[T]) RemoveHead() {
+	if ll.head == nil {
+		return
+	}
 	ll.head = ll.head.next
 }
 
-func createLinkedList[T any](data []T) *Node {
-	node := Node{content: data[0]}
-	for point := range data[1:] {
-		node.next := Node{content: point}
-		node = node.next
+func createLinkedList[T any](data []T) *LinkedList[T] {
+	ll := NewLinkedList(NewNode(data[0]))
+	for _, point := range data[1:] {
+		ll.AddTail(NewNode(point))
 	}
-	return head
+	return ll
 }
 
 func TestRemoveDups(t *testing.T) {
@@ -59,7 +74,7 @@ func TestRemoveDups(t *testing.T) {
 	}{
 		{
 			createLinkedList([]int{5, 2, 3, 5}),
-			createLinkedList([]int{5, 2, 3})
+			createLinkedList([]int{5, 2, 3}),
 		},
 	}
 }
