@@ -100,9 +100,27 @@ func TestRemoveDups(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		if removeDups(tt.input) != tt.expected {
-			t.Errorf("removeDups(%T) does not return expected=%T\n",
-				tt.input, tt.expected)
+		if tt.expected == nil {
+			if removeDups(tt.input) != nil {
+				t.Errorf("removeDups(nil) does not return expected=%+v\n", tt.expected)
+			}
+			break
+		}
+		ll := removeDups(tt.input)
+		expectedNode := tt.expected.head
+		idx := 0
+		for node := ll.head; node != nil; node = node.next {
+			if expectedNode == nil {
+				t.Errorf("removeDups failed. got=%d expected=nil idx=%d\n",
+				node.content, idx)
+				break
+			}
+			if node.content != expectedNode.content {
+				t.Errorf("removeDups failed. got=%d expected=%d idx=%d\n",
+				node.content, expectedNode.content, idx)
+				break
+			}
+			expectedNode = expectedNode.next
 		}
 	}
 }
