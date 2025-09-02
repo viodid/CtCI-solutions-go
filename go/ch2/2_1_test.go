@@ -1,109 +1,47 @@
 package main
 
-import "testing"
-
-type Node[T any] struct {
-	content T
-	next *Node[T]
-}
-
-func NewNode[T any](content T) *Node[T] {
-	return &Node[T]{content: content}
-}
-
-type LinkedList[T any] struct {
-	head *Node[T]
-	tail *Node[T]
-}
-
-func NewLinkedList[T any](node *Node[T]) *LinkedList[T] {
-	return &LinkedList[T]{head: node, tail: node}
-}
-
-func (ll *LinkedList[T]) AddTail(node *Node[T]) {
-	ll.tail.next = node
-	ll.tail = node
-}
-
-func (ll *LinkedList[T]) RemoveTail(node *Node[T]) {
-	// only one node left
-	if ll.head == ll.tail {
-		ll.head = nil
-		ll.tail= nil
-		return
-	}
-	// only two nodes left
-	if ll.head.next == ll.tail {
-		ll.head.next = nil
-		ll.tail = ll.head
-		return
-	}
-	for node := ll.head; node != nil; node = node.next {
-		if node.next.next == nil {
-			node.next = nil
-			ll.tail = node
-			break
-		}
-	}
-}
-
-func (ll *LinkedList[T]) AddFront(node *Node[T]) {
-	node.next = ll.head
-	ll.head = node
-}
-
-func (ll *LinkedList[T]) RemoveHead() {
-	if ll.head == nil {
-		return
-	}
-	ll.head = ll.head.next
-}
-
-func createLinkedList[T any](data []T) *LinkedList[T] {
-	ll := NewLinkedList(NewNode(data[0]))
-	for _, point := range data[1:] {
-		ll.AddTail(NewNode(point))
-	}
-	return ll
-}
+import (
+	"ch2/ll"
+	"testing"
+)
 
 func TestRemoveDups(t *testing.T) {
-	tests := []struct{
-		input *LinkedList[int]
-		expected *LinkedList[int]
+	tests := []struct {
+		input    *ll.LinkedList[int]
+		expected *ll.LinkedList[int]
 	}{
 		{
-			createLinkedList([]int{5, 2, 3, 5}),
-			createLinkedList([]int{5, 2, 3}),
+			ll.CreateLinkedList([]int{5, 2, 3, 5}),
+			ll.CreateLinkedList([]int{5, 2, 3}),
 		},
 		{
-			createLinkedList([]int{5, 2, 3}),
-			createLinkedList([]int{5, 2, 3}),
+			ll.CreateLinkedList([]int{5, 2, 3}),
+			ll.CreateLinkedList([]int{5, 2, 3}),
 		},
-		{ nil, nil },
+		{nil, nil},
 		{
-			createLinkedList([]int{5, 2, 3, 3, 3, 1, 2, 2, 0, 5}),
-			createLinkedList([]int{5, 2, 3, 1, 0}),
-		},
-		{
-			createLinkedList([]int{5, 2, 3, 3, 3}),
-			createLinkedList([]int{5, 2, 3}),
+			ll.CreateLinkedList([]int{5, 2, 3, 3, 3, 1, 2, 2, 0, 5}),
+			ll.CreateLinkedList([]int{5, 2, 3, 1, 0}),
 		},
 		{
-			createLinkedList([]int{5, 2, 3, 3, 3, 3, 3, 3}),
-			createLinkedList([]int{5, 2, 3}),
+			ll.CreateLinkedList([]int{5, 2, 3, 3, 3}),
+			ll.CreateLinkedList([]int{5, 2, 3}),
 		},
 		{
-			createLinkedList([]int{5, 2, 3, 2, 4}),
-			createLinkedList([]int{5, 2, 3, 4}),
+			ll.CreateLinkedList([]int{5, 2, 3, 3, 3, 3, 3, 3}),
+			ll.CreateLinkedList([]int{5, 2, 3}),
 		},
 		{
-			createLinkedList([]int{1, 2, 3, 4}),
-			createLinkedList([]int{1, 2, 3, 4}),
+			ll.CreateLinkedList([]int{5, 2, 3, 2, 4}),
+			ll.CreateLinkedList([]int{5, 2, 3, 4}),
 		},
 		{
-			createLinkedList([]int{0}),
-			createLinkedList([]int{0}),
+			ll.CreateLinkedList([]int{1, 2, 3, 4}),
+			ll.CreateLinkedList([]int{1, 2, 3, 4}),
+		},
+		{
+			ll.CreateLinkedList([]int{0}),
+			ll.CreateLinkedList([]int{0}),
 		},
 	}
 
@@ -115,62 +53,62 @@ func TestRemoveDups(t *testing.T) {
 			continue
 		}
 		ll := removeDups(tt.input)
-		expectedNode := tt.expected.head
+		expectedNode := tt.expected.Head
 		idx := 0
-		for node := ll.head; node != nil; node = node.next {
+		for node := ll.Head; node != nil; node = node.Next {
 			if expectedNode == nil {
 				t.Errorf("removeDups failed. got=%d expected=nil idx=%d\n",
-				node.content, idx)
+					node.Content, idx)
 				break
 			}
-			if node.content != expectedNode.content {
+			if node.Content != expectedNode.Content {
 				t.Errorf("removeDups failed. got=%d expected=%d idx=%d\n",
-				node.content, expectedNode.content, idx)
+					node.Content, expectedNode.Content, idx)
 				break
 			}
-			expectedNode = expectedNode.next
+			expectedNode = expectedNode.Next
 			idx++
 		}
 	}
 }
 
 func TestRemoveDupsv2(t *testing.T) {
-	tests := []struct{
-		input *LinkedList[int]
-		expected *LinkedList[int]
+	tests := []struct {
+		input    *ll.LinkedList[int]
+		expected *ll.LinkedList[int]
 	}{
 		{
-			createLinkedList([]int{5, 2, 3, 5}),
-			createLinkedList([]int{5, 2, 3}),
+			ll.CreateLinkedList([]int{5, 2, 3, 5}),
+			ll.CreateLinkedList([]int{5, 2, 3}),
 		},
 		{
-			createLinkedList([]int{5, 2, 3}),
-			createLinkedList([]int{5, 2, 3}),
+			ll.CreateLinkedList([]int{5, 2, 3}),
+			ll.CreateLinkedList([]int{5, 2, 3}),
 		},
-		{ nil, nil },
+		{nil, nil},
 		{
-			createLinkedList([]int{5, 2, 3, 3, 3, 1, 2, 2, 0, 5}),
-			createLinkedList([]int{5, 2, 3, 1, 0}),
-		},
-		{
-			createLinkedList([]int{5, 2, 3, 3, 3}),
-			createLinkedList([]int{5, 2, 3}),
+			ll.CreateLinkedList([]int{5, 2, 3, 3, 3, 1, 2, 2, 0, 5}),
+			ll.CreateLinkedList([]int{5, 2, 3, 1, 0}),
 		},
 		{
-			createLinkedList([]int{5, 2, 3, 3, 3, 3, 3, 3}),
-			createLinkedList([]int{5, 2, 3}),
+			ll.CreateLinkedList([]int{5, 2, 3, 3, 3}),
+			ll.CreateLinkedList([]int{5, 2, 3}),
 		},
 		{
-			createLinkedList([]int{5, 2, 3, 2, 4}),
-			createLinkedList([]int{5, 2, 3, 4}),
+			ll.CreateLinkedList([]int{5, 2, 3, 3, 3, 3, 3, 3}),
+			ll.CreateLinkedList([]int{5, 2, 3}),
 		},
 		{
-			createLinkedList([]int{1, 2, 3, 4}),
-			createLinkedList([]int{1, 2, 3, 4}),
+			ll.CreateLinkedList([]int{5, 2, 3, 2, 4}),
+			ll.CreateLinkedList([]int{5, 2, 3, 4}),
 		},
 		{
-			createLinkedList([]int{0}),
-			createLinkedList([]int{0}),
+			ll.CreateLinkedList([]int{1, 2, 3, 4}),
+			ll.CreateLinkedList([]int{1, 2, 3, 4}),
+		},
+		{
+			ll.CreateLinkedList([]int{0}),
+			ll.CreateLinkedList([]int{0}),
 		},
 	}
 
@@ -182,22 +120,21 @@ func TestRemoveDupsv2(t *testing.T) {
 			continue
 		}
 		ll := removeDupsv2(tt.input)
-		expectedNode := tt.expected.head
+		expectedNode := tt.expected.Head
 		idx := 0
-		for node := ll.head; node != nil; node = node.next {
+		for node := ll.Head; node != nil; node = node.Next {
 			if expectedNode == nil {
 				t.Errorf("removeDupsv2 failed. got=%d expected=nil idx=%d\n",
-				node.content, idx)
+					node.Content, idx)
 				break
 			}
-			if node.content != expectedNode.content {
+			if node.Content != expectedNode.Content {
 				t.Errorf("removeDupsv2 failed. got=%d expected=%d idx=%d\n",
-				node.content, expectedNode.content, idx)
+					node.Content, expectedNode.Content, idx)
 				break
 			}
-			expectedNode = expectedNode.next
+			expectedNode = expectedNode.Next
 			idx++
 		}
 	}
 }
-
