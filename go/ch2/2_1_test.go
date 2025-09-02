@@ -123,7 +123,6 @@ func TestRemoveDups(t *testing.T) {
 				node.content, idx)
 				break
 			}
-			t.Logf("expected: %d - output: %d\n", expectedNode.content, node.content)
 			if node.content != expectedNode.content {
 				t.Errorf("removeDups failed. got=%d expected=%d idx=%d\n",
 				node.content, expectedNode.content, idx)
@@ -134,3 +133,71 @@ func TestRemoveDups(t *testing.T) {
 		}
 	}
 }
+
+func TestRemoveDupsv2(t *testing.T) {
+	tests := []struct{
+		input *LinkedList[int]
+		expected *LinkedList[int]
+	}{
+		{
+			createLinkedList([]int{5, 2, 3, 5}),
+			createLinkedList([]int{5, 2, 3}),
+		},
+		{
+			createLinkedList([]int{5, 2, 3}),
+			createLinkedList([]int{5, 2, 3}),
+		},
+		{ nil, nil },
+		{
+			createLinkedList([]int{5, 2, 3, 3, 3, 1, 2, 2, 0, 5}),
+			createLinkedList([]int{5, 2, 3, 1, 0}),
+		},
+		{
+			createLinkedList([]int{5, 2, 3, 3, 3}),
+			createLinkedList([]int{5, 2, 3}),
+		},
+		{
+			createLinkedList([]int{5, 2, 3, 3, 3, 3, 3, 3}),
+			createLinkedList([]int{5, 2, 3}),
+		},
+		{
+			createLinkedList([]int{5, 2, 3, 2, 4}),
+			createLinkedList([]int{5, 2, 3, 4}),
+		},
+		{
+			createLinkedList([]int{1, 2, 3, 4}),
+			createLinkedList([]int{1, 2, 3, 4}),
+		},
+		{
+			createLinkedList([]int{0}),
+			createLinkedList([]int{0}),
+		},
+	}
+
+	for _, tt := range tests {
+		if tt.expected == nil {
+			if removeDupsv2(tt.input) != nil {
+				t.Errorf("removeDupsv2(nil) does not return expected=%+v\n", tt.expected)
+			}
+			continue
+		}
+		ll := removeDupsv2(tt.input)
+		expectedNode := tt.expected.head
+		idx := 0
+		for node := ll.head; node != nil; node = node.next {
+			if expectedNode == nil {
+				t.Errorf("removeDupsv2 failed. got=%d expected=nil idx=%d\n",
+				node.content, idx)
+				break
+			}
+			if node.content != expectedNode.content {
+				t.Errorf("removeDupsv2 failed. got=%d expected=%d idx=%d\n",
+				node.content, expectedNode.content, idx)
+				break
+			}
+			expectedNode = expectedNode.next
+			idx++
+		}
+	}
+}
+
