@@ -7,18 +7,20 @@ func removeDups(ll *LinkedList[int]) *LinkedList[int] {
 	if ll == nil || ll.head == ll.tail {
 		return ll
 	}
-	n1 := ll.head
-	n2 := ll.head.next
-	repetitionState := map[int]bool{n1.content: true}
-	for n2 != nil {
-		_, ok := repetitionState[n2.content]
+	prev := ll.head
+	curr := ll.head.next
+	repetitionState := map[int]bool{prev.content: true}
+	for curr != nil {
+		_, ok := repetitionState[curr.content]
 		if ok {
-			n1.next = n2.next
+			prev.next = curr.next
+			curr = curr.next
+			continue
 		} else {
-			repetitionState[n2.content] = true
+			repetitionState[curr.content] = true
 		}
-		n1 = n1.next
-		n2 = n2.next
+		prev = prev.next
+		curr = curr.next
 	}
 	return ll
 }
