@@ -60,3 +60,25 @@ func returnKthToLastv2(list *ll.LinkedList[int], k int) *ll.Node[int] {
 	return p1
 }
 
+// This solution's space and time complexity is still the same
+// but its approach is recursive
+// time: O(n) - space: O(1)
+func returnKthToLastv3(list *ll.LinkedList[int], k int) *ll.Node[int] {
+	if list == nil {
+		return nil
+	}
+	i := 0
+	return recursiveKthToLast(list.Head, k, &i)
+}
+
+func recursiveKthToLast(node *ll.Node[int], k int, c *int) *ll.Node[int] {
+	if node == nil {
+		return nil
+	}
+	n := recursiveKthToLast(node.Next, k, c)
+	*c = *c + 1
+	if *c == k {
+		return node
+	}
+	return n
+}
