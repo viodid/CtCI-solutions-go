@@ -57,6 +57,17 @@ func (ll *LinkedList[T]) RemoveHead() {
 	ll.Head = ll.Head.Next
 }
 
+func (ll *LinkedList[T]) GetNodeIdx(idx int) *Node[T] {
+	i := 0
+	for node := ll.Head; node != nil; node.Next {
+		i++
+		if i == idx {
+			return node
+		}
+	}
+	return nil
+}
+
 func CreateLinkedList[T any](data []T) *LinkedList[T] {
 	ll := NewLinkedList(NewNode(data[0]))
 	for _, point := range data[1:] {
