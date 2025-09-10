@@ -11,8 +11,8 @@ func TestDeleteMiddleNode(t *testing.T) {
 		nums []int
 		idx int
 	}{
+		{ {3, 2, 1, 0}, 1 },
 		{ {3, 2, 1, 0}, 2 },
-		{ {3, 2, 1, 0}, 3 },
 		{ {3, 2, 1, 0}, 10 },
 		{ {3, 1, 0}, 1 },
 		{ {3, 1}, 1 },
@@ -28,15 +28,24 @@ func TestDeleteMiddleNode(t *testing.T) {
 	for _, in := range inputs {
 		list := ll.CreateLinkedList(in.nums)
 		node := list.GetNodeIdx(in.idx)
-		expected := list.DeleteNodeIdx(in.idx)
-		tests = append(tests, {
+		newList := list.DeepCopy()
+		newList.DeleteNodeIdx(in.idx)
+		tests = append(tests, []test{
 			list: list,
 			node: node,
-			expected: expected,
+			expected: newList,
 		})
 	}
 
 	for _, tt := range tests {
-		// TODO
+		deleteMiddleNode(tt.node)
+		expNode := tt.expected.Head
+		for node := tt.list.Head; node != nil; node.Next {
+			if node.Content != expNode.Content {
+				t.Errorf("deleteMiddleNode failed. got=%+v expected=%d\n",
+					node.Content, tt.expected.Content)
+			}
+			expNode = expNode.Next
+		}
 	}
 }
