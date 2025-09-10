@@ -60,12 +60,32 @@ func (ll *LinkedList[T]) RemoveHead() {
 func (ll *LinkedList[T]) GetNodeIdx(idx int) *Node[T] {
 	i := 0
 	for node := ll.Head; node != nil; node.Next {
-		i++
 		if i == idx {
 			return node
 		}
+		i++
 	}
 	return nil
+}
+
+func (ll* LinkedList[T]) DeleteNodeIdx(idx int) {
+	if idx == 0 {
+		ll.RemoveHead()
+	}
+	prev := ll.Head
+	i := 1
+	for curr := prev.Next; curr != nil; curr.Next {
+		if curr == ll.Tail {
+			ll.RemoveTail()
+			break
+		} else if i == idx {
+			prev.Next = curr.Next
+			break
+		}
+		i++
+		prev = curr
+	}
+	
 }
 
 func CreateLinkedList[T any](data []T) *LinkedList[T] {
