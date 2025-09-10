@@ -68,6 +68,7 @@ func (ll *LinkedList[T]) GetNodeIdx(idx int) *Node[T] {
 	return nil
 }
 
+
 func (ll* LinkedList[T]) DeleteNodeIdx(idx int) {
 	if idx == 0 {
 		ll.RemoveHead()
@@ -86,6 +87,14 @@ func (ll* LinkedList[T]) DeleteNodeIdx(idx int) {
 		prev = curr
 	}
 	
+}
+
+func (ll *LinkedList[T]) DeepCopy() *LinkedList[T] {
+	newLL := CreateLinkedList[T](ll.Head.Content)
+	for node := ll.Head.Next; node != nil; node.Next {
+		newLL.AddTail(NewNode(node.Content))
+	}
+	return newLL
 }
 
 func CreateLinkedList[T any](data []T) *LinkedList[T] {
