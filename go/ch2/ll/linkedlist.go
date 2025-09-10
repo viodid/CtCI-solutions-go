@@ -23,7 +23,7 @@ func (ll *LinkedList[T]) AddTail(node *Node[T]) {
 	ll.Tail = node
 }
 
-func (ll *LinkedList[T]) RemoveTail(node *Node[T]) {
+func (ll *LinkedList[T]) RemoveTail() {
 	// only one node left
 	if ll.Head == ll.Tail {
 		ll.Head = nil
@@ -59,7 +59,7 @@ func (ll *LinkedList[T]) RemoveHead() {
 
 func (ll *LinkedList[T]) GetNodeIdx(idx int) *Node[T] {
 	i := 0
-	for node := ll.Head; node != nil; node.Next {
+	for node := ll.Head; node != nil; node = node.Next {
 		if i == idx {
 			return node
 		}
@@ -75,7 +75,7 @@ func (ll* LinkedList[T]) DeleteNodeIdx(idx int) {
 	}
 	prev := ll.Head
 	i := 1
-	for curr := prev.Next; curr != nil; curr.Next {
+	for curr := prev.Next; curr != nil; curr = curr.Next {
 		if curr == ll.Tail {
 			ll.RemoveTail()
 			break
@@ -90,14 +90,17 @@ func (ll* LinkedList[T]) DeleteNodeIdx(idx int) {
 }
 
 func (ll *LinkedList[T]) DeepCopy() *LinkedList[T] {
-	newLL := CreateLinkedList[T](ll.Head.Content)
-	for node := ll.Head.Next; node != nil; node.Next {
+	newLL := NewLinkedList(NewNode(ll.Head.Content))
+	for node := ll.Head.Next; node != nil; node = node.Next {
 		newLL.AddTail(NewNode(node.Content))
 	}
 	return newLL
 }
 
 func CreateLinkedList[T any](data []T) *LinkedList[T] {
+	if data == nil {
+		return nil
+	}
 	ll := NewLinkedList(NewNode(data[0]))
 	for _, point := range data[1:] {
 		ll.AddTail(NewNode(point))
