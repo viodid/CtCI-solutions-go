@@ -39,8 +39,20 @@ func TestDeleteMiddleNode(t *testing.T) {
 
 	for _, tt := range tests {
 		deleteMiddleNode(tt.node)
+		if tt.list == nil {
+			if tt.expected != nil {
+				t.Errorf("deleteMiddleNode failed. got=%+v expected=%v\n",
+					tt.list, tt.expected)
+			}
+			continue
+		}
 		expNode := tt.expected.Head
 		for node := tt.list.Head; node != nil; node = node.Next {
+			if expNode == nil {
+				t.Errorf("deleteMiddleNode failed. got=%+v expected=%+v\n",
+					node, expNode)
+				break
+			}
 			if node.Content != expNode.Content {
 				t.Errorf("deleteMiddleNode failed. got=%+v expected=%d\n",
 					node.Content, expNode.Content)
