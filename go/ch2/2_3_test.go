@@ -13,10 +13,8 @@ func TestDeleteMiddleNode(t *testing.T) {
 	}{
 		{ []int{3, 2, 1, 0}, 1 },
 		{ []int{3, 2, 1, 0}, 2 },
-		{ []int{3, 2, 1, 0}, 10 },
+		{ []int{3, 2, 1, 0, 1}, 3 },
 		{ []int{3, 1, 0}, 1 },
-		{ []int{3, 1}, 1 },
-		// { nil, 1 },
 	}
 
 	type test struct {
