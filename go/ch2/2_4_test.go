@@ -22,12 +22,13 @@ func TestPartition(t *testing.T) {
 
 	for _, tt := range tests {
 		beforePivot := true
+		partition(tt.list)
 		for node := tt.list.Head; node != nil; node = node.Next {
 			if beforePivot && node.Content > tt.pivot {
 				t.ErrorF("partition error before pivot. got=%d, pivot=%d\n",
 				node.Content, tt.pivot)
 				break
-			} else if !beforePivot && node.Content < tt.pivot {
+			} else if !beforePivot && node.Content <= tt.pivot {
 				t.ErrorF("partition error after pivot. got=%d, pivot=%d\n",
 				node.Content, tt.pivot)
 				break
