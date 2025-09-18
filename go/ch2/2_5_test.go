@@ -1,0 +1,43 @@
+package main
+
+import (
+	"ch2/ll"
+	"testing"
+)
+
+func TestSumLists(t *testing.T) {
+	tests := []struct{
+		n1 *ll.LinkedList[int]
+		n2 *ll.LinkedList[int]
+		expected []int
+	}{
+		{
+			ll.CreateLinkedList([]int{1, 2, 1}),
+			ll.CreateLinkedList([]int{3, 5}),
+			[]int{4, 7, 1},
+
+		},
+		{
+			ll.CreateLinkedList([]int{9, 2}),
+			ll.CreateLinkedList([]int{3, 5}),
+			[]int{2, 8},
+		},
+		{
+			ll.CreateLinkedList([]int{9, 4}),
+			ll.CreateLinkedList([]int{3, 5}),
+			[]int{2, 0, 1},
+		},
+		{
+			ll.CreateLinkedList([]int{9, 4, 0}),
+			ll.CreateLinkedList([]int{3, 5}),
+			[]int{2, 0, 1},
+		},
+		{
+			ll.CreateLinkedList([]int{0}),
+			ll.CreateLinkedList([]int{1}),
+			[]int{1},
+		},
+		{nil, nil, nil},
+	}
+
+}
