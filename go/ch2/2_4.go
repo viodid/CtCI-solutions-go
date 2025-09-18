@@ -14,20 +14,20 @@ func partition(list *ll.LinkedList[int], pivot int) {
 	afterPivot := &ll.LinkedList[int]{}
 	for node := list.Head; node != nil; node = node.Next {
 		if node.Content < pivot {
-			if beforePivot == nil {
+			if beforePivot.Head == nil {
 				firstNode(node.Content, beforePivot)
 				continue
 			}
 			beforePivot.AddTail(node)
 		} else {
-			if afterPivot == nil {
+			if afterPivot.Head == nil {
 				firstNode(node.Content, afterPivot)
 				continue
 			}
 			afterPivot.AddTail(node)
 		}
 	}
-	if beforePivot != nil {
+	if beforePivot.Head != nil {
 		beforePivot.Tail.Next = afterPivot.Head
 	} else {
 		beforePivot = afterPivot
