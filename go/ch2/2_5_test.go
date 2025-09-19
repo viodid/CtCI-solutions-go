@@ -57,5 +57,9 @@ func TestSumLists(t *testing.T) {
 			}
 			idx++
 		}
+		if idx != len(tt.expected) {
+			t.Errorf("one or more nodes are missing. total nodes=%d, expected=%d\n",
+					idx, len(tt.expected))
+		}
 	}
 }
