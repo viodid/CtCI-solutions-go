@@ -40,4 +40,20 @@ func TestSumLists(t *testing.T) {
 		{nil, nil, nil},
 	}
 
+	for _, tt := range tests {
+		output := sumList(tt.n1, tt.n2)
+		if tt.expected == nil && output != nil {
+			t.Errorf("wrong expected output. expected=%v, got=%v\n",
+			tt.expected, output)
+		}
+		idx := 0
+		for node := output.Head; node != nil; node = node.Next {
+			if node.Content != tt.expected[idx] {
+				t.Errorf("wrong expected output. expected=%d, got=%d\n",
+				tt.expected[idx], node.Content)
+			}
+			idx++
+		}
+	}
+
 }
