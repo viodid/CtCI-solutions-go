@@ -41,10 +41,13 @@ func TestSumLists(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		output := sumList(tt.n1, tt.n2)
-		if tt.expected == nil && output != nil {
-			t.Errorf("wrong expected output. expected=%v, got=%v\n",
-			tt.expected, output)
+		output := sumLists(tt.n1, tt.n2)
+		if tt.expected == nil || output == nil {
+			if tt.expected == nil && output != nil {
+				t.Errorf("wrong expected output. expected=%v, got=%v\n",
+				tt.expected, output)
+			}
+			continue
 		}
 		idx := 0
 		for node := output.Head; node != nil; node = node.Next {
@@ -55,5 +58,4 @@ func TestSumLists(t *testing.T) {
 			idx++
 		}
 	}
-
 }
