@@ -19,6 +19,11 @@ func NewLinkedList[T any](node *Node[T]) *LinkedList[T] {
 }
 
 func (ll *LinkedList[T]) AddTail(node *Node[T]) {
+	if ll.Tail == nil {
+		ll.Head = node
+		ll.Tail = node
+		return
+	}
 	ll.Tail.Next = node
 	ll.Tail = node
 	ll.Tail.Next = nil
