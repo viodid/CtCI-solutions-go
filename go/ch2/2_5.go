@@ -7,6 +7,8 @@ import "ch2/ll"
 // if the result is bigger than 9, set the carry
 // if the lists have different lenghts, append the remaining elemnts
 // of the longer list to the output
+//
+// time: O(a + b) - space: O(max(a, b))
 func sumLists(n1, n2 *ll.LinkedList[int]) *ll.LinkedList[int] {
 	if n1 == nil || n2 == nil {
 		return nil
@@ -50,4 +52,45 @@ func sumLists(n1, n2 *ll.LinkedList[int]) *ll.LinkedList[int] {
 		}
 	}
 	return output
+}
+
+// follow up: the digits are stored in forward order
+
+// as we need to sum up the digits for the least significant (the last node)
+// to the most significant, recursion makes sense
+//
+// traverse recursively the linked lists until both are nil.
+// as the returned linked list is shared via reference, we can add nodes
+// despite the call stack int which it's executing
+// if the addition is greater than 9, return the carry
+func sumListsv2(n1, n2 *ll.LinkedList[int]) *ll.LinkedList[int] {
+	if n1 == nil || n2 == nil {
+		return nil
+	} else if n1 == nil {
+		return n2
+	} else if n2 == nil {
+		return n1
+	}
+	result := &ll.LinkedList[int]{}
+	recursiveSumLists(n1.Head, n2.Head, result)
+	return result
+}
+
+func recursiveSumLists(n1, n2 *ll.Node[int], result *ll.LinkedList[int]) int {
+	if n1 == nil && n2 == nil {
+		return 0
+	}
+	if n1 == nil {
+		recursiveSumLists(nil, n2.Next, result)
+		result.AddFront(ll.NewNode(n2.Content))
+		return 0
+	} else if n2 == nil {
+		recursiveSumLists(n1.Next, nil, result)
+		result.AddFront(ll.NewNode(n1.Content))
+		return 0
+	}
+	carry := recursiveSumLists(n1.Next, n2.Next, result)
+	addition := n1.Content + n2.Content + carry
+	result.AddFront(ll.NewNode(addition % 10))
+	return addition % 10
 }
