@@ -72,7 +72,10 @@ func sumListsv2(n1, n2 *ll.LinkedList[int]) *ll.LinkedList[int] {
 		return n1
 	}
 	result := &ll.LinkedList[int]{}
-	recursiveSumLists(n1.Head, n2.Head, result)
+	equalLenLists(n1, n2)
+	if recursiveSumLists(n1.Head, n2.Head, result) == 1 {
+		result.AddFront(ll.NewNode(1))
+	}
 	return result
 }
 
@@ -80,17 +83,27 @@ func recursiveSumLists(n1, n2 *ll.Node[int], result *ll.LinkedList[int]) int {
 	if n1 == nil && n2 == nil {
 		return 0
 	}
-	if n1 == nil {
-		recursiveSumLists(nil, n2.Next, result)
-		result.AddFront(ll.NewNode(n2.Content))
-		return 0
-	} else if n2 == nil {
-		recursiveSumLists(n1.Next, nil, result)
-		result.AddFront(ll.NewNode(n1.Content))
-		return 0
-	}
 	carry := recursiveSumLists(n1.Next, n2.Next, result)
 	addition := n1.Content + n2.Content + carry
 	result.AddFront(ll.NewNode(addition % 10))
-	return addition % 10
+	outCarry := 0
+	if addition > 9 {
+		outCarry = 1
+	}
+	return outCarry
+}
+
+func equalLenLists(n1, n2 *ll.LinkedList[int]) {
+	if n1.Length() > n2.Length() {
+		paddingZeroList(n2, n1.Length())
+	} else if n2.Length() > n1.Length() {
+		paddingZeroList(n1, n2.Length())
+	}
+}
+
+func paddingZeroList(list *ll.LinkedList[int], len int) {
+	diff := len - list.Length()
+	for i := 0; i < diff; i++ {
+		list.AddFront(ll.NewNode(0))
+	}
 }
