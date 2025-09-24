@@ -103,6 +103,14 @@ func (ll *LinkedList[T]) DeepCopy() *LinkedList[T] {
 	return newLL
 }
 
+func (ll *LinkedList[T]) Length() int {
+	len := 0
+	for node := ll.Head; node != nil; node = node.Next {
+		len++
+	}
+	return len
+}
+
 func CreateLinkedList[T any](data []T) *LinkedList[T] {
 	if data == nil {
 		return nil
