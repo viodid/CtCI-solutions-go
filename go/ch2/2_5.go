@@ -59,6 +59,7 @@ func sumLists(n1, n2 *ll.LinkedList[int]) *ll.LinkedList[int] {
 // as we need to sum up the digits for the least significant (the last node)
 // to the most significant, recursion makes sense
 //
+// add padding with zeroes if one list is shorter, so both list are aligned
 // traverse recursively the linked lists until both are nil.
 // as the returned linked list is shared via reference, we can add nodes
 // despite the call stack int which it's executing
