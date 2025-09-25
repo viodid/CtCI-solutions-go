@@ -29,18 +29,19 @@ func (ll *LinkedList[T]) AddTail(node *Node[T]) {
 	ll.Tail.Next = nil
 }
 
-func (ll *LinkedList[T]) RemoveTail() {
+func (ll *LinkedList[T]) RemoveTail() *Node[T] {
 	// only one node left
+	tmp := ll.Tail
 	if ll.Head == ll.Tail {
 		ll.Head = nil
 		ll.Tail = nil
-		return
+		return tmp
 	}
 	// only two nodes left
 	if ll.Head.Next == ll.Tail {
 		ll.Head.Next = nil
 		ll.Tail = ll.Head
-		return
+		return tmp
 	}
 	for node := ll.Head; node != nil; node = node.Next {
 		if node.Next.Next == nil {
@@ -49,6 +50,7 @@ func (ll *LinkedList[T]) RemoveTail() {
 			break
 		}
 	}
+	return tmp
 }
 
 func (ll *LinkedList[T]) AddFront(node *Node[T]) {
@@ -104,6 +106,9 @@ func (ll *LinkedList[T]) DeepCopy() *LinkedList[T] {
 }
 
 func (ll *LinkedList[T]) Length() int {
+	if ll == nil {
+		return 0
+	}
 	len := 0
 	for node := ll.Head; node != nil; node = node.Next {
 		len++
