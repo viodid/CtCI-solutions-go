@@ -33,10 +33,10 @@ func TestPalindrome(t *testing.T) {
 		{ nil, false },
 	}
 
-	for _, tt := range tests {
+	for idx, tt := range tests {
 		if palindrome(tt.input) != tt.expected {
-			t.Errorf("wrong output. expected=%t, got=%t\n",
-				tt.expected, palindrome(tt.input))
+			t.Errorf("wrong output. expected=%t, got=%t, idx=%d\n",
+				tt.expected, palindrome(tt.input), idx)
 		}
 	}
 }
