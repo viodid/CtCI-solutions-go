@@ -6,7 +6,6 @@ import (
 )
 
 func TestDeleteMiddleNode(t *testing.T) {
-
 	inputs := []struct{
 		nums []int
 		idx int
