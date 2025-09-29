@@ -18,3 +18,44 @@ func Intersection(l1, l2 *ll.LinkedList[int]) *ll.Node[int] {
 	}
 	return nil
 }
+
+
+// Somethings to bear in mind:
+// - If two LL intersect, the last node has to be the same
+// - we can chope the longest LL until both of them have the same lenght
+// - iterate one step at a time on both LL when the have the same lenght
+// time: O(n) - space: O(1)
+func Intersectionv2(l1, l2 *ll.LinkedList[int]) *ll.Node[int] {
+	if l1 == nil || l2  == nil {
+		return nil
+	} else if l1.Tail != l2.Tail {
+		return nil
+	}
+
+	// LL cursors
+	c1 := l1.Head
+	c2 := l2.Head
+
+	// Advance the pointer of the longer LL
+	diff := l1.Length() - l2.Length()
+	if diff > 0 {
+		for i := 0; i < diff; i++ {
+			c1 = c1.Next
+		}
+	} else if diff < 0 {
+		for i := 0; i < -diff; i++ {
+			c2 = c2.Next
+		}
+	}
+	
+	// Traverse until the intersection is found
+	for {
+		if c1 == c2 {
+			return c1
+		}
+		c1 = c1.Next
+		c2 = c2.Next
+	}
+
+	return nil
+}
