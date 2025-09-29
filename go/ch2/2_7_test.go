@@ -20,7 +20,7 @@ func TestIntersection(t *testing.T) {
 			l2: &ll.LinkedList[int]{},
 			expected: ll.NewNode(rand.Intn(100)),
 		}
-		for j := 0; j < 5; j++ {
+		for j := 0; j < 10; j++ {
 			te.l1.AddTail(ll.NewNode(rand.Intn(100)))
 			te.l2.AddTail(ll.NewNode(rand.Intn(100)))
 		}
