@@ -75,18 +75,19 @@ func (ll *LinkedList[T]) AddNodeIdx(idx int, node *Node[T]) *Node[T] {
 	} else if idx ==  ll.Length() {
 		ll.AddTail(node)
 		return node
-	} else if idx > ll.Lenght() || idx < 0 {
+	} else if idx > ll.Length() || idx < 0 {
 		return nil
 	}
 
 	prev := ll.Head
 	curr := ll.Head.Next
-	for i := 1; i <= idx; i++ {
+	for i := 1; i < idx; i++ {
 		prev = prev.Next
 		curr = curr.Next
 	}
 	prev.Next = node
 	node.Next = curr
+	return node
 }
 
 func (ll *LinkedList[T]) GetNodeIdx(idx int) *Node[T] {
