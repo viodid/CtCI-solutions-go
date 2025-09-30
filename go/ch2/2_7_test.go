@@ -20,12 +20,14 @@ func TestIntersection(t *testing.T) {
 			l2: &ll.LinkedList[int]{},
 			expected: ll.NewNode(rand.Intn(100)),
 		}
-		for j := 0; j < 10; j++ {
+		for j := 0; j < randRange(4, 8); j++ {
 			te.l1.AddTail(ll.NewNode(rand.Intn(100)))
+		}
+		for j := 0; j < randRange(4, 8); j++ {
 			te.l2.AddTail(ll.NewNode(rand.Intn(100)))
 		}
-		te.l1.AddNodeIdx(i, te.expected)
-		te.l2.AddNodeIdx(i, te.expected)
+		te.l1.AddNodeIdx(rand.Intn(4), te.expected)
+		te.l2.AddNodeIdx(rand.Intn(4), te.expected)
 		tests = append(tests, te)
 	}
 	tests = append(tests, test{nil, nil, nil})
@@ -57,12 +59,16 @@ func TestIntersectionv2(t *testing.T) {
 			l2: &ll.LinkedList[int]{},
 			expected: ll.NewNode(rand.Intn(100)),
 		}
-		for j := 0; j < 10; j++ {
+		for j := 0; j < randRange(4, 8); j++ {
 			te.l1.AddTail(ll.NewNode(rand.Intn(100)))
+		}
+		for j := 0; j < randRange(4, 8); j++ {
 			te.l2.AddTail(ll.NewNode(rand.Intn(100)))
 		}
-		te.l1.AddNodeIdx(i, te.expected)
-		te.l2.AddNodeIdx(i, te.expected)
+		te.l1.AddNodeIdx(rand.Intn(4), te.expected)
+		te.l2.AddNodeIdx(rand.Intn(4), te.expected)
+		te.l1.Tail = te.l1.GetTail()
+		te.l2.Tail = te.l2.GetTail()
 		tests = append(tests, te)
 	}
 	tests = append(tests, test{nil, nil, nil})
@@ -78,3 +84,8 @@ func TestIntersectionv2(t *testing.T) {
 		}
 	}
 }
+
+func randRange(min, max int) int {
+	return rand.Intn(max - min) + min
+}
+
