@@ -21,7 +21,7 @@ This repository contains comprehensive solutions to problems from "Cracking the 
 - **Chapters 1-2**: Fully implemented with tests
 - **Remaining chapters**: Work in progress
 
-## 🏗️ Project Structure
+## Project Structure
 
 The repository is organized by book chapters, with each chapter containing individual problem solutions:
 
@@ -127,7 +127,7 @@ Problems 2.1 through 2.7 involving linked list operations, including a custom ge
 - **Chapter 11**: Testing
 - **Additional chapters** through Chapter 17
 
-## 🏷️ Code Quality Features
+## Code Quality Features
 
 ### Multiple Solution Approaches
 Many problems include multiple implementations with different time/space trade-offs:
@@ -147,7 +147,7 @@ Each solution includes:
 - **Clear comments** explaining algorithmic approaches
 - **Function documentation** following Go conventions
 
-## 🛠️ Development
+## Development
 
 ### Adding New Solutions
 
@@ -164,7 +164,7 @@ All tests follow Go's table-driven testing pattern with comprehensive test cases
 - Boundary conditions
 - Invalid inputs where applicable
 
-## � Book Reference
+## Book Reference
 
 These solutions correspond to **"Cracking the Coding Interview" 6th Edition** by Gayle Laakmann McDowell. Each problem number matches the book's organization:
 
@@ -192,7 +192,7 @@ Contributions are welcome! Please feel free to:
 - Maintain consistent code style
 - Update README if adding new chapters
 
-## � License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
