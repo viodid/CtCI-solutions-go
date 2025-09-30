@@ -28,7 +28,7 @@ func Intersection(l1, l2 *ll.LinkedList[int]) *ll.Node[int] {
 func Intersectionv2(l1, l2 *ll.LinkedList[int]) *ll.Node[int] {
 	if l1 == nil || l2  == nil {
 		return nil
-	} else if l1.Tail != l2.Tail {
+	} else if getTail(l1) != getTail(l2) {
 		return nil
 	}
 
@@ -58,4 +58,10 @@ func Intersectionv2(l1, l2 *ll.LinkedList[int]) *ll.Node[int] {
 	}
 
 	return nil
+}
+
+func getTail(l *ll.LinkedList[int]) *ll.Node[int] {
+	node := l.Head
+	for ; node.Next != nil; node = node.Next {}
+	return node
 }
