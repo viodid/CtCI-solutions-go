@@ -29,6 +29,12 @@ func (ll *LinkedList[T]) AddTail(node *Node[T]) {
 	ll.Tail.Next = nil
 }
 
+func (ll *LinkedList[T]) GetTail() *Node[T] {
+	node := ll.Head
+	for ; node.Next != nil; node = node.Next {}
+	return node
+}
+
 func (ll *LinkedList[T]) RemoveTail() *Node[T] {
 	// only one node left
 	tmp := ll.Tail
