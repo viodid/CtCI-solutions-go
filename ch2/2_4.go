@@ -45,7 +45,6 @@ func firstNode(content int, list *ll.LinkedList[int]) {
 	list.Tail = node
 }
 
-
 // the pseudo-sorting could be done in-place leaving constant space
 // time: O(n) - space(1)
 func partitionv2(list *ll.LinkedList[int]) {

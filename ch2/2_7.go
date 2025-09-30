@@ -6,7 +6,7 @@ import "ch2/ll"
 // that exists in both LL
 // time: O(n^2) - space: O(1)
 func Intersection(l1, l2 *ll.LinkedList[int]) *ll.Node[int] {
-	if l1 == nil || l2  == nil {
+	if l1 == nil || l2 == nil {
 		return nil
 	}
 	for node1 := l1.Head; node1 != nil; node1 = node1.Next {
@@ -19,14 +19,13 @@ func Intersection(l1, l2 *ll.LinkedList[int]) *ll.Node[int] {
 	return nil
 }
 
-
 // Somethings to bear in mind:
 // - If two LL intersect, the last node has to be the same
 // - we can chope the longest LL until both of them have the same lenght
 // - iterate one step at a time on both LL when the have the same lenght
 // time: O(n) - space: O(1)
 func Intersectionv2(l1, l2 *ll.LinkedList[int]) *ll.Node[int] {
-	if l1 == nil || l2  == nil {
+	if l1 == nil || l2 == nil {
 		return nil
 	} else if l1.Tail != l1.Tail {
 		return nil
@@ -47,7 +46,7 @@ func Intersectionv2(l1, l2 *ll.LinkedList[int]) *ll.Node[int] {
 			c2 = c2.Next
 		}
 	}
-	
+
 	// Traverse until the intersection is found
 	for {
 		if c1 == c2 {
@@ -59,4 +58,3 @@ func Intersectionv2(l1, l2 *ll.LinkedList[int]) *ll.Node[int] {
 
 	return nil
 }
-

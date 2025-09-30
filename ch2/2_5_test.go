@@ -6,16 +6,15 @@ import (
 )
 
 func TestSumLists(t *testing.T) {
-	tests := []struct{
-		n1 *ll.LinkedList[int]
-		n2 *ll.LinkedList[int]
+	tests := []struct {
+		n1       *ll.LinkedList[int]
+		n2       *ll.LinkedList[int]
 		expected []int
 	}{
 		{
 			ll.CreateLinkedList([]int{1, 2, 1}),
 			ll.CreateLinkedList([]int{3, 5}),
 			[]int{4, 7, 1},
-
 		},
 		{
 			ll.CreateLinkedList([]int{9, 2}),
@@ -45,7 +44,7 @@ func TestSumLists(t *testing.T) {
 		if tt.expected == nil || output == nil {
 			if tt.expected == nil && output != nil {
 				t.Errorf("wrong expected output. expected=%v, got=%v\n",
-				tt.expected, output)
+					tt.expected, output)
 			}
 			continue
 		}
@@ -53,28 +52,27 @@ func TestSumLists(t *testing.T) {
 		for node := output.Head; node != nil; node = node.Next {
 			if node.Content != tt.expected[idx] {
 				t.Errorf("wrong expected output. expected=%d, got=%d\n",
-				tt.expected[idx], node.Content)
+					tt.expected[idx], node.Content)
 			}
 			idx++
 		}
 		if idx != len(tt.expected) {
 			t.Errorf("one or more nodes are missing. total nodes=%d, expected=%d\n",
-					idx, len(tt.expected))
+				idx, len(tt.expected))
 		}
 	}
 }
 
 func TestSumListsv2(t *testing.T) {
-	tests := []struct{
-		n1 *ll.LinkedList[int]
-		n2 *ll.LinkedList[int]
+	tests := []struct {
+		n1       *ll.LinkedList[int]
+		n2       *ll.LinkedList[int]
 		expected []int
 	}{
 		{
 			ll.CreateLinkedList([]int{1, 2, 1}),
 			ll.CreateLinkedList([]int{3, 5}),
 			[]int{1, 5, 6},
-
 		},
 		{
 			ll.CreateLinkedList([]int{9, 2}),
@@ -104,7 +102,7 @@ func TestSumListsv2(t *testing.T) {
 		if tt.expected == nil || output == nil {
 			if tt.expected == nil && output != nil {
 				t.Errorf("wrong expected output. expected=%v, got=%v\n",
-				tt.expected, output)
+					tt.expected, output)
 			}
 			continue
 		}
@@ -112,13 +110,13 @@ func TestSumListsv2(t *testing.T) {
 		for node := output.Head; node != nil; node = node.Next {
 			if node.Content != tt.expected[idx] {
 				t.Errorf("wrong expected output. expected=%d, got=%d\n",
-				tt.expected[idx], node.Content)
+					tt.expected[idx], node.Content)
 			}
 			idx++
 		}
 		if idx != len(tt.expected) {
 			t.Errorf("one or more nodes are missing. total nodes=%d, expected=%d\n",
-					idx, len(tt.expected))
+				idx, len(tt.expected))
 		}
 	}
 }

@@ -45,7 +45,7 @@ func sumLists(n1, n2 *ll.LinkedList[int]) *ll.LinkedList[int] {
 	} else {
 		node = node1
 	}
-	for ;node != nil; node = node.Next {
+	for ; node != nil; node = node.Next {
 		output.AddTail(ll.NewNode(node.Content + carry))
 		if carry == 1 {
 			carry = 0

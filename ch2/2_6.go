@@ -5,8 +5,8 @@ import (
 )
 
 // because a singly LL can only be traversed in
-// one direction, pop all the nodes up to the 
-// middle and check if the returned numbers 
+// one direction, pop all the nodes up to the
+// middle and check if the returned numbers
 // match with the first half of the LL
 
 // time: O(n) - space: O(n / 2)

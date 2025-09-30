@@ -1,24 +1,24 @@
 package main
 
 import (
-	"testing"
 	"ch2/ll"
+	"testing"
 )
 
 func TestDeleteMiddleNode(t *testing.T) {
-	inputs := []struct{
+	inputs := []struct {
 		nums []int
-		idx int
+		idx  int
 	}{
-		{ []int{3, 2, 1, 0}, 1 },
-		{ []int{3, 2, 1, 0}, 2 },
-		{ []int{3, 2, 1, 0, 1}, 3 },
-		{ []int{3, 1, 0}, 1 },
+		{[]int{3, 2, 1, 0}, 1},
+		{[]int{3, 2, 1, 0}, 2},
+		{[]int{3, 2, 1, 0, 1}, 3},
+		{[]int{3, 1, 0}, 1},
 	}
 
 	type test struct {
-		list *ll.LinkedList[int]
-		node *ll.Node[int]
+		list     *ll.LinkedList[int]
+		node     *ll.Node[int]
 		expected *ll.LinkedList[int]
 	}
 	tests := []test{}
@@ -28,8 +28,8 @@ func TestDeleteMiddleNode(t *testing.T) {
 		newList := ll.CreateLinkedList(in.nums)
 		newList.DeleteNodeIdx(in.idx)
 		tests = append(tests, test{
-			list: list,
-			node: node,
+			list:     list,
+			node:     node,
 			expected: newList,
 		})
 	}

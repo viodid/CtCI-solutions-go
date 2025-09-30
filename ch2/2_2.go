@@ -39,7 +39,7 @@ func returnKthToLastv2(list *ll.LinkedList[int], k int) *ll.Node[int] {
 	if list == nil {
 		return nil
 	}
-	
+
 	p1 := list.Head
 	p2 := list.Head
 	i := 1

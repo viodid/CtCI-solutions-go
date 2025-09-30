@@ -6,8 +6,8 @@ import (
 )
 
 func TestPalindrome(t *testing.T) {
-	tests := []struct{
-		input *ll.LinkedList[int]
+	tests := []struct {
+		input    *ll.LinkedList[int]
 		expected bool
 	}{
 		{
@@ -30,7 +30,7 @@ func TestPalindrome(t *testing.T) {
 			ll.CreateLinkedList([]int{1, 2, 2, 1}),
 			true,
 		},
-		{ nil, false },
+		{nil, false},
 	}
 
 	for idx, tt := range tests {
