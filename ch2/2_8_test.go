@@ -1,7 +1,7 @@
-package main
+package ch2
 
 import (
-	"ch2/ll"
+	"github.com/viodid/ctci-solutions-go/ll"
 	"math/rand"
 	"testing"
 )
@@ -14,7 +14,7 @@ func TestLoopDetection(t *testing.T) {
 	tests := []test{}
 	for i := 0; i < 10; i++ {
 		te := test{
-			list:       &ll.LinkedList[int]{},
+			list:     &ll.LinkedList[int]{},
 			expected: ll.NewNode(rand.Intn(100)),
 		}
 		for j := 0; j < 8; j++ {
@@ -22,11 +22,12 @@ func TestLoopDetection(t *testing.T) {
 		}
 		te.list.AddNodeIdx(randRange(4, 8), te.expected)
 		te.expected.Next = te.list.GetNodeIdx(randRange(0, 4))
+		te.expected = te.expected.Next
 		tests = append(tests, te)
 	}
 	tests = append(tests, test{nil, nil})
 	tests = append(tests, test{
-		list:       ll.CreateLinkedList([]int{1, 2, 3, 4}),
+		list:     ll.CreateLinkedList([]int{1, 2, 3, 4}),
 		expected: nil})
 
 	for _, tt := range tests {
@@ -37,4 +38,3 @@ func TestLoopDetection(t *testing.T) {
 		}
 	}
 }
-
