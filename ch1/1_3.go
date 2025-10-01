@@ -13,7 +13,7 @@ func URLify(inputStr []byte, tLength int) {
 		return
 	}
 	writeCur := len(inputStr) - 1
-	
+
 	for readCur := tLength - 1; readCur >= 0; readCur-- {
 		if inputStr[readCur] == ' ' {
 			inputStr[writeCur] = '0'
@@ -29,4 +29,3 @@ func URLify(inputStr []byte, tLength int) {
 	}
 
 }
-

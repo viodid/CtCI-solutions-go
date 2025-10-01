@@ -3,8 +3,8 @@ package main
 import "testing"
 
 func TestRotateMatrix(t *testing.T) {
-	tests := []struct{
-		input [][]uint8
+	tests := []struct {
+		input    [][]uint8
 		expected [][]uint8
 	}{
 		{
@@ -60,15 +60,15 @@ func TestRotateMatrix(t *testing.T) {
 			for j := 0; j < size; j++ {
 				if output[i][j] != tt.expected[i][j] {
 					t.Errorf("rotateMatrix[%d][%d] is wrong. got=%d. expected=%d\n",
-					i, j, output[i][j], tt.expected[i][j])
+						i, j, output[i][j], tt.expected[i][j])
 				}
 			}
 		}
 	}
 }
 func TestRotateMatrixv2(t *testing.T) {
-	tests := []struct{
-		input [][]uint8
+	tests := []struct {
+		input    [][]uint8
 		expected [][]uint8
 	}{
 		{
@@ -124,7 +124,7 @@ func TestRotateMatrixv2(t *testing.T) {
 			for j := 0; j < size; j++ {
 				if output[i][j] != tt.expected[i][j] {
 					t.Errorf("rotateMatrixv2[%d][%d] is wrong. got=%d. expected=%d\n",
-					i, j, output[i][j], tt.expected[i][j])
+						i, j, output[i][j], tt.expected[i][j])
 				}
 			}
 		}
@@ -132,8 +132,8 @@ func TestRotateMatrixv2(t *testing.T) {
 }
 
 func TestRotateMatrixv3(t *testing.T) {
-	tests := []struct{
-		input [][]uint8
+	tests := []struct {
+		input    [][]uint8
 		expected [][]uint8
 	}{
 		{
@@ -189,7 +189,7 @@ func TestRotateMatrixv3(t *testing.T) {
 			for j := 0; j < size; j++ {
 				if output[i][j] != tt.expected[i][j] {
 					t.Errorf("rotateMatrixv3[%d][%d] is wrong. got=%d. expected=%d\n",
-					i, j, output[i][j], tt.expected[i][j])
+						i, j, output[i][j], tt.expected[i][j])
 				}
 			}
 		}

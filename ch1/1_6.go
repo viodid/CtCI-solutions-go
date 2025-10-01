@@ -4,6 +4,7 @@ import (
 	"strconv"
 	"strings"
 )
+
 // the optimal solution for this problem would be to
 // construct the final string while traversing the uncompressed string
 // when the string is traversed, compare the lengths and return the original
@@ -22,7 +23,7 @@ func stringCompression(input string) string {
 	counter := 1
 	for _, ch := range input[1:] {
 		if lastChar != byte(ch) {
-			compressedStr = append(compressedStr, string(lastChar) + strconv.Itoa(counter))
+			compressedStr = append(compressedStr, string(lastChar)+strconv.Itoa(counter))
 			counter = 1
 		} else {
 			counter++
@@ -32,7 +33,7 @@ func stringCompression(input string) string {
 
 	input = input[:len(input)-1]
 
-	if len(compressedStr) * 2 < len(input) {
+	if len(compressedStr)*2 < len(input) {
 		return strings.Join(compressedStr, "")
 	}
 	return input

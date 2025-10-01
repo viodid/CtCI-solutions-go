@@ -3,28 +3,28 @@ package main
 import "testing"
 
 func TestStringRotation(t *testing.T) {
-	tests := []struct{
-		input []string
+	tests := []struct {
+		input    []string
 		expected bool
 	}{
 		{
-			input: []string{"", ""},
+			input:    []string{"", ""},
 			expected: true,
 		},
 		{
-			input: []string{"a", "a"},
+			input:    []string{"a", "a"},
 			expected: true,
 		},
 		{
-			input: []string{"a", "ab"},
+			input:    []string{"a", "ab"},
 			expected: false,
 		},
 		{
-			input: []string{"erbottlewat", "waterbottle"},
+			input:    []string{"erbottlewat", "waterbottle"},
 			expected: true,
 		},
 		{
-			input: []string{"erottlewat", "waterbottle"},
+			input:    []string{"erottlewat", "waterbottle"},
 			expected: false,
 		},
 	}

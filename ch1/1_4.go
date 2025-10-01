@@ -37,7 +37,7 @@ func palindromePermutation(input string) bool {
 
 	checkOdd := false
 	for _, v := range charHashMap {
-		if v % 2 == 1 {
+		if v%2 == 1 {
 			if checkOdd == true {
 				return false
 			}
@@ -76,5 +76,5 @@ func palindromePermutationv2(input string) bool {
 		return false
 	}
 
-	return bitVec & (bitVec - 1) == 0
+	return bitVec&(bitVec-1) == 0
 }

@@ -2,18 +2,17 @@ package main
 
 import "testing"
 
-
 func TestZeroMatrix(t *testing.T) {
-	tests := []struct{
-		input [][]int
+	tests := []struct {
+		input    [][]int
 		expected [][]int
 	}{
 		{
-			input: nil,
+			input:    nil,
 			expected: nil,
 		},
 		{
-			input: [][]int{},
+			input:    [][]int{},
 			expected: [][]int{},
 		},
 		{
@@ -99,14 +98,14 @@ func TestZeroMatrix(t *testing.T) {
 		if tt.input == nil {
 			if zeroMatrix(tt.input) != nil {
 				t.Errorf("zeroMatrix(%v) is wrong. got=%v. expected=%v\n",
-				tt.input, zeroMatrix(tt.input), tt.expected)
+					tt.input, zeroMatrix(tt.input), tt.expected)
 			}
 			continue
 		}
 		if len(tt.input) == 0 {
 			if len(zeroMatrix(tt.input)) != 0 {
 				t.Errorf("zeroMatrix(%v) is wrong. got=%v. expected=%v\n",
-				tt.input, zeroMatrix(tt.input), tt.expected)
+					tt.input, zeroMatrix(tt.input), tt.expected)
 			}
 			continue
 		}
@@ -117,25 +116,24 @@ func TestZeroMatrix(t *testing.T) {
 			for j := 0; j < width; j++ {
 				if output[i][j] != tt.expected[i][j] {
 					t.Errorf("zeroMatrix[%d][%d] is wrong. got=%d. expected=%d\n",
-					i, j, output[i][j], tt.expected[i][j])
+						i, j, output[i][j], tt.expected[i][j])
 				}
 			}
 		}
 	}
 }
 
-
 func TestZeroMatrixv2(t *testing.T) {
-	tests := []struct{
-		input [][]int
+	tests := []struct {
+		input    [][]int
 		expected [][]int
 	}{
 		{
-			input: nil,
+			input:    nil,
 			expected: nil,
 		},
 		{
-			input: [][]int{},
+			input:    [][]int{},
 			expected: [][]int{},
 		},
 		{
@@ -221,14 +219,14 @@ func TestZeroMatrixv2(t *testing.T) {
 		if tt.input == nil {
 			if zeroMatrixv2(tt.input) != nil {
 				t.Errorf("zeroMatrixv2(%v) is wrong. got=%v. expected=%v\n",
-				tt.input, zeroMatrixv2(tt.input), tt.expected)
+					tt.input, zeroMatrixv2(tt.input), tt.expected)
 			}
 			continue
 		}
 		if len(tt.input) == 0 {
 			if len(zeroMatrixv2(tt.input)) != 0 {
 				t.Errorf("zeroMatrixv2(%v) is wrong. got=%v. expected=%v\n",
-				tt.input, zeroMatrixv2(tt.input), tt.expected)
+					tt.input, zeroMatrixv2(tt.input), tt.expected)
 			}
 			continue
 		}
@@ -239,7 +237,7 @@ func TestZeroMatrixv2(t *testing.T) {
 			for j := 0; j < width; j++ {
 				if output[i][j] != tt.expected[i][j] {
 					t.Errorf("zeroMatrixv2[%d][%d] is wrong. got=%d. expected=%d\n",
-					i, j, output[i][j], tt.expected[i][j])
+						i, j, output[i][j], tt.expected[i][j])
 				}
 			}
 		}

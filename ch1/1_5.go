@@ -32,7 +32,7 @@ func oneWay(s1, s2 string) bool {
 			continue
 		}
 		valueDiff := abs(v, smaller[k])
-		if  valueDiff > 1 {
+		if valueDiff > 1 {
 			return false
 		} else if valueDiff == 1 {
 			if difference {
@@ -43,7 +43,6 @@ func oneWay(s1, s2 string) bool {
 	}
 	return true
 }
-
 
 func createHashMap(input string) map[rune]int {
 	hashMap := map[rune]int{}
@@ -64,4 +63,3 @@ func abs(x, y int) int {
 	}
 	return y - x
 }
-

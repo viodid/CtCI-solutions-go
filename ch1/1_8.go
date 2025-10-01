@@ -4,7 +4,7 @@ package main
 // then set all saved coordinates axis elements to 0.
 // time: O(hw + (p * (h + w))) - space: O(p) p = "zero" points
 func zeroMatrix(matrix [][]int) [][]int {
-	if matrix == nil || len(matrix) == 0 || len(matrix) * len(matrix[0]) <= 1 {
+	if matrix == nil || len(matrix) == 0 || len(matrix)*len(matrix[0]) <= 1 {
 		return matrix
 	}
 	zeroPoints := [][]int{}
@@ -21,7 +21,6 @@ func zeroMatrix(matrix [][]int) [][]int {
 	}
 	return matrix
 }
-
 
 func setAxisZero(matrix [][]int, y, x int) {
 	height := len(matrix)
@@ -40,7 +39,7 @@ func setAxisZero(matrix [][]int, y, x int) {
 
 // time: O(hw) - O(1) space - use first row and column to store state
 func zeroMatrixv2(matrix [][]int) [][]int {
-	if matrix == nil || len(matrix) == 0 || len(matrix) * len(matrix[0]) <= 1 {
+	if matrix == nil || len(matrix) == 0 || len(matrix)*len(matrix[0]) <= 1 {
 		return matrix
 	}
 	columnHasZero := false

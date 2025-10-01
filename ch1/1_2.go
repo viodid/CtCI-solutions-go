@@ -13,7 +13,7 @@ package main
 // any given value below 0 is not permutation
 // at the end all the occurrences should be 0 to be a permutation
 
-// optimization 2: use an array to store the value counter and the index to 
+// optimization 2: use an array to store the value counter and the index to
 // store the character (this assumes ASCII or relative)
 
 // time: O(n) - space: O(c) c=character set

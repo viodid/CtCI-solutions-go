@@ -3,21 +3,21 @@ package main
 import "testing"
 
 func TestOneWay(t *testing.T) {
-	tests := []struct{
-		s1 string
-		s2 string
+	tests := []struct {
+		s1       string
+		s2       string
 		expected bool
 	}{
-		{ "pale", "ple", true },
-		{ "pales", "pale", true },
-		{ "pale", "bales", false },
-		{ "pale", "bale", true },
-		{ "pale", "bake", false },
-		{ "", "", true },
-		{ "pale", "pale", true },
-		{ "a", "", true },
-		{ "ab", "", false },
-		{ "hey there", "hi", false },
+		{"pale", "ple", true},
+		{"pales", "pale", true},
+		{"pale", "bales", false},
+		{"pale", "bale", true},
+		{"pale", "bake", false},
+		{"", "", true},
+		{"pale", "pale", true},
+		{"a", "", true},
+		{"ab", "", false},
+		{"hey there", "hi", false},
 	}
 
 	for _, tt := range tests {
