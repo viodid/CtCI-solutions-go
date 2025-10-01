@@ -1,7 +1,7 @@
-package main
+package ch2
 
 import (
-	"ch2/ll"
+	"github.com/viodid/ctci-solutions-go/ll"
 	"testing"
 )
 

@@ -1,4 +1,4 @@
-package main
+package ch1
 
 // traverse all the elements, when a 0 is found, store the state
 // then set all saved coordinates axis elements to 0.

@@ -1,4 +1,4 @@
-package main
+package ch1
 
 // this problem can be solved with one hashmap for each string
 // as long as both hashmaps are equal or different by one repetition

@@ -1,4 +1,4 @@
-package main
+package ch1
 
 // time: O(c) c = character set - spcce: O(c)
 func isUnique(str string) bool {

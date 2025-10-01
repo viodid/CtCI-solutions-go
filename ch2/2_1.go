@@ -1,6 +1,6 @@
-package main
+package ch2
 
-import "ch2/ll"
+import "github.com/viodid/ctci-solutions-go/ll"
 
 // iterate over the LL and store the repetition state.
 // If an int is found more than once, remove the node

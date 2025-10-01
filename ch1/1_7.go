@@ -1,4 +1,4 @@
-package main
+package ch1
 
 // given an x * x size matrix, to rotate it 90 degrees
 // the y and x axis should be swapped so the smallest

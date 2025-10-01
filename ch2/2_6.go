@@ -1,8 +1,6 @@
-package main
+package ch2
 
-import (
-	"ch2/ll"
-)
+import "github.com/viodid/ctci-solutions-go/ll"
 
 // because a singly LL can only be traversed in
 // one direction, pop all the nodes up to the

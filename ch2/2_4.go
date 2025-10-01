@@ -1,6 +1,6 @@
-package main
+package ch2
 
-import "ch2/ll"
+import "github.com/viodid/ctci-solutions-go/ll"
 
 // the easiest way to solve this problem is to
 // use two additional data structures to store the

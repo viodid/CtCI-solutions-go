@@ -1,6 +1,6 @@
-package main
+package ch2
 
-import "ch2/ll"
+import "github.com/viodid/ctci-solutions-go/ll"
 
 // Iterate over both of the lists in n^2 and return the first node
 // that exists in both LL

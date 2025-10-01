@@ -1,6 +1,6 @@
-package main
+package ch2
 
-import "ch2/ll"
+import "github.com/viodid/ctci-solutions-go/ll"
 
 // time: O(1) - space: O(1)
 func deleteMiddleNode(node *ll.Node[int]) {

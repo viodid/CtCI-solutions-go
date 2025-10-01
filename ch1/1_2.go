@@ -1,4 +1,4 @@
-package main
+package ch1
 
 // assumptions: a permutation of a string should always be different meaning
 // the character set is unicode

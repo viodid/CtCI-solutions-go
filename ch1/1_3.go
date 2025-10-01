@@ -1,4 +1,4 @@
-package main
+package ch1
 
 // constraints: time complexity should be at most O(n)
 

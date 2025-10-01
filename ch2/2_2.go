@@ -1,6 +1,6 @@
-package main
+package ch2
 
-import "ch2/ll"
+import "github.com/viodid/ctci-solutions-go/ll"
 
 // Get the size of the linked list in one iteration
 // Return the corresponding index

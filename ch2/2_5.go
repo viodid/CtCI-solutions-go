@@ -1,6 +1,6 @@
-package main
+package ch2
 
-import "ch2/ll"
+import "github.com/viodid/ctci-solutions-go/ll"
 
 // Iterate through both LL and sum up its digits plus the carry
 // create a new node for the addition but module 10
