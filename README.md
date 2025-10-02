@@ -7,7 +7,7 @@ This repository contains comprehensive solutions to problems from "Cracking the 
 **This repository is a work in progress** that aims to provide complete solutions to all problems from "Cracking the Coding Interview" 6th Edition. The repository currently includes:
 
 - **Chapter 1: Arrays and Strings** - Problems 1.1 through 1.9 (Complete)
-- **Chapter 2: Linked Lists** - Problems 2.1 through 2.7 (Complete)
+- **Chapter 2: Linked Lists** - Problems 2.1 through 2.8 (Complete)
 - **Additional chapters** - Will be added progressively
 
 ### What This Repository Will Include (When Complete):
@@ -23,34 +23,33 @@ This repository contains comprehensive solutions to problems from "Cracking the 
 
 ## Project Structure
 
-The repository is organized by book chapters, with each chapter containing individual problem solutions:
+The repository is organized as a single Go module with chapters containing individual problem solutions:
 
 ```
 CtCI-solutions/
+├── go.mod         # Single module for entire project
 ├── ch1/           # Chapter 1: Arrays and Strings
 │   ├── 1_1.go     # Problem 1.1: Is Unique
 │   ├── 1_1_test.go
 │   ├── 1_2.go     # Problem 1.2: Check Permutation
 │   ├── 1_2_test.go
-│   ├── ...
-│   └── go.mod
+│   └── ...        # Problems 1.1 through 1.9
 ├── ch2/           # Chapter 2: Linked Lists
 │   ├── 2_1.go     # Problem 2.1: Remove Dups
 │   ├── 2_1_test.go
-│   ├── ...
-│   ├── go.mod
-│   └── ll/        # Linked List utilities
-│       └── linkedlist.go
+│   └── ...        # Problems 2.1 through 2.8
+├── ll/            # Linked List utilities (shared across chapters)
+│   └── linkedlist.go
 └── README.md
 ```
 
-### Chapter Organization
+### Project Organization
 
-Each chapter is structured as a separate Go module with:
+The project is structured as a single Go module with:
 - **Problem solutions**: `{chapter}_{problem}.go` (e.g., `1_1.go`)
 - **Test files**: `{chapter}_{problem}_test.go` (e.g., `1_1_test.go`)
-- **Utility packages**: Supporting data structures and helper functions
-- **Module file**: `go.mod` for dependency management
+- **Utility packages**: Supporting data structures and helper functions (e.g., `ll/`)
+- **Single module**: One `go.mod` file manages all dependencies
 
 ## 🚀 Getting Started
 
@@ -66,43 +65,36 @@ git clone https://github.com/viodid/CtCI-solutions.git
 cd CtCI-solutions
 ```
 
-2. Navigate to any chapter directory:
+2. Initialize the module (dependencies will be downloaded automatically when running tests):
 ```bash
-cd ch1
-```
-
-3. Run tests for all problems in the chapter:
-```bash
-go test -v
+go mod tidy
 ```
 
 ## 🧪 Running Tests
 
-### Run All Tests in a Chapter
+### Run All Tests in All Chapters
+From the root directory:
 ```bash
-cd ch1
-go test -v
+go test ./...
+```
+
+### Run All Tests in a Specific Chapter
+```bash
+go test ./ch1/...
+go test ./ch2/...
 ```
 
 ### Run Tests for a Specific Problem
 ```bash
-cd ch1
-go test -v -run TestIsUnique
+go test -run TestIsUnique ./ch1/
+go test -run TestRemoveDups ./ch2/
 ```
 
-### Run Tests with Coverage
+### Alternative: Run Tests from Chapter Directory
+You can still navigate to chapter directories if preferred:
 ```bash
 cd ch1
-go test -cover
-```
-
-### Run All Tests in All Chapters
-From the root directory:
-```bash
-for dir in ch*/; do
-    echo "Testing $dir"
-    cd "$dir" && go test -v && cd ..
-done
+go test -v
 ```
 
 ## 📋 Problem Categories
@@ -113,7 +105,7 @@ done
 Problems 1.1 through 1.9 involving string manipulation, array operations, and character handling.
 
 #### Chapter 2: Linked Lists (Complete)  
-Problems 2.1 through 2.7 involving linked list operations, including a custom generic linked list implementation with operations like Add, Remove, Search, and Deep Copy.
+Problems 2.1 through 2.8 involving linked list operations, including a custom generic linked list implementation with operations like Add, Remove, Search, and Deep Copy.
 
 ### Coming Soon:
 - **Chapter 3**: Stacks and Queues
@@ -195,4 +187,3 @@ Contributions are welcome! Please feel free to:
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
-
