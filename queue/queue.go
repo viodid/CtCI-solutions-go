@@ -9,8 +9,12 @@ type Queue[T any] struct {
 	data *ll.LinkedList[T]
 }
 
+func NewQueue[T any]() *Queue[T] {
+	return &Queue[T]{data: &ll.LinkedList[T]{}}
+}
+
 func (q *Queue[T]) Add(item T) {
-	q.data.AddTail(ll.NewNode(t))
+	q.data.AddTail(ll.NewNode(item))
 }
 
 func (q *Queue[T]) Remove() (T, error) {
@@ -18,7 +22,7 @@ func (q *Queue[T]) Remove() (T, error) {
 		var zero T
 		return zero, errors.New("cannot remove on an empty queue")
 	}
-	return q.data.RemoveHead().Content
+	return q.data.RemoveHead().Content, nil
 }
 
 func (q *Queue[T]) Peek() (T, error) {

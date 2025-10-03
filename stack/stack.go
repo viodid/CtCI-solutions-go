@@ -9,16 +9,20 @@ type Stack[T any] struct {
 	data *ll.LinkedList[T]
 }
 
+func NewStack[T any]() *Stack[T] {
+	return &Stack[T]{data: &ll.LinkedList[T]{}}
+}
+
 func (s *Stack[T]) Pop() (T, error) {
 	if s.IsEmpty() {
 		var zero T
 		return zero, errors.New("cannot pop on an empty stack")
 	}
-	return s.data.RemoveHead().Content
+	return s.data.RemoveHead().Content, nil
 }
 
 func (s *Stack[T]) Push(item T) {
-	s.data.AddFront(ll.NewNode(t))
+	s.data.AddFront(ll.NewNode(item))
 }
 
 func (s *Stack[T]) Peek() (T, error) {
