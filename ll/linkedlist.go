@@ -68,11 +68,13 @@ func (ll *LinkedList[T]) AddFront(node *Node[T]) {
 	ll.Head = node
 }
 
-func (ll *LinkedList[T]) RemoveHead() {
+func (ll *LinkedList[T]) RemoveHead() *Node[T] {
 	if ll.Head == nil {
-		return
+		return nil
 	}
+	node := ll.Head
 	ll.Head = ll.Head.Next
+	return node
 }
 
 func (ll *LinkedList[T]) AddNodeIdx(idx int, node *Node[T]) *Node[T] {
