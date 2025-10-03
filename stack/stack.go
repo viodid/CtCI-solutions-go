@@ -1,23 +1,34 @@
 package stack
 
-import "github.com/viodid/ctci-solutions-go/ll"
+import (
+	"errors"
+	"github.com/viodid/ctci-solutions-go/ll"
+)
 
 type Stack[T any] struct {
 	data *ll.LinkedList[T]
 }
 
-func (s *Stack[T])Pop() T {
+func (s *Stack[T]) Pop() (T, error) {
+	if s.IsEmpty() {
+		var zero T
+		return zero, errors.New("cannot pop on an empty stack")
+	}
 	return s.data.RemoveHead().Content
 }
 
-func (s *Stack[T])Push(item T) {
+func (s *Stack[T]) Push(item T) {
 	s.data.AddFront(ll.NewNode(t))
 }
 
-func (s *Stack[T])Peek() T {
-	return s.data.Head.Content
+func (s *Stack[T]) Peek() (T, error) {
+	if s.IsEmpty() {
+		var zero T
+		return zero, errors.New("cannot peek on an empty stack")
+	}
+	return s.data.Head.Content, nil
 }
 
-func (s *Stack[T])IsEmpty() bool {
-	return s.data.Head == nil
+func (s *Stack[T]) IsEmpty() bool {
+	return s.data == nil || s.data.Head == nil
 }
