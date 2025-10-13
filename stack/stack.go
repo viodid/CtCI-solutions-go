@@ -36,3 +36,7 @@ func (s *Stack[T]) Peek() (T, error) {
 func (s *Stack[T]) IsEmpty() bool {
 	return s.data == nil || s.data.Head == nil
 }
+
+func (s *Stack[T]) Length() int {
+	return s.data.Length()
+}
