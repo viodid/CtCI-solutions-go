@@ -1,8 +1,17 @@
 /*
 Stack Min
 
-The stack structure would have a new attribute min that keeps the state of
-the mininum element present in the stack.
-This value would be updated on push if the element pushed is less than the 
-current mininum value.
+The stack structure would have an underlying array with the same size as the total
+number of nodes in the stack to keep track of the state of the minimum number on
+every operation.
+# initial stack
+{ 3, 2, 7, 1, 2 } # stack
+[ 3, 2, 2, 1, 1 ] # array
+# pop
+{ 3, 2, 7, 1 }
+[ 3, 2, 2, 1 ]
+# pop
+{ 3, 2, 7 }
+[ 3, 2, 2 ] # now the minimum is 2
+this allows for the pop, push and min methods to be constant
 */
