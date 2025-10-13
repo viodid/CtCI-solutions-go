@@ -1,0 +1,6 @@
+/*
+Three in One
+
+As we should know the size of the array, a three pointer
+array splitting the array in 3 equal parts would do it.
+*/

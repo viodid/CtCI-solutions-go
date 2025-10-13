@@ -1,0 +1,8 @@
+/*
+Stack Min
+
+The stack structure would have a new attribute min that keeps the state of
+the mininum element present in the stack.
+This value would be updated on push if the element pushed is less than the 
+current mininum value.
+*/
