@@ -33,7 +33,7 @@ func (s *Stack[T]) PopAt(idx int) (T, error) {
 	node := s.data.GetNodeIdx(idx)
 	s.data.DeleteNodeIdx(idx)
 
-	return node.Content
+	return node.Content, nil
 }
 
 

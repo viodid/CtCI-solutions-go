@@ -32,4 +32,12 @@ func TestStack(t *testing.T) {
 		t.Errorf("error stack peek. expected=%d, got=%d",
 			8, item2)
 	}
+	item3, err := stack.PopAt(0)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if item3 != 8 {
+		t.Errorf("error stack peek. expected=%d, got=%d",
+			8, item3)
+	}
 }
