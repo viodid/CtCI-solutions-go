@@ -32,3 +32,12 @@ func (ss *SetOfStacks) Pop() (int, error) {
 	}
 	return out, err
 }
+
+func (ss *SetOfStacks) PopAt(idx int) (int, error) {
+	currentStack := ss.stacks[idx/4]
+	out, err := currentStack.PopAt(idx%4)
+	if currentStack.Length() == 0 && len(ss.stacks) > 1 {
+		ss.stacks = ss.stacks[:len(ss.stacks)-1]
+	}
+	return out, err
+}

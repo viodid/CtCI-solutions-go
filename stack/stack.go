@@ -36,7 +36,6 @@ func (s *Stack[T]) PopAt(idx int) (T, error) {
 	return node.Content, nil
 }
 
-
 func (s *Stack[T]) Push(item T) {
 	s.data.AddFront(ll.NewNode(item))
 }
