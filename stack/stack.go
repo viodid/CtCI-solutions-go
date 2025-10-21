@@ -21,21 +21,6 @@ func (s *Stack[T]) Pop() (T, error) {
 	return s.data.RemoveHead().Content, nil
 }
 
-func (s *Stack[T]) PopAt(idx int) (T, error) {
-	if s.IsEmpty() {
-		var zero T
-		return zero, errors.New("cannot pop on an empty stack")
-	}
-	if idx >= s.data.Length() || idx < 0 {
-		var zero T
-		return zero, errors.New("index is out of bounds")
-	}
-	node := s.data.GetNodeIdx(idx)
-	s.data.DeleteNodeIdx(idx)
-
-	return node.Content, nil
-}
-
 func (s *Stack[T]) Push(item T) {
 	s.data.AddFront(ll.NewNode(item))
 }
