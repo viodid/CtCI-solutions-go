@@ -25,16 +25,21 @@ func TestStackOfPlates(t *testing.T) {
 
 	populateStacks(stack, plates)
 
-	for i := 0; i < 10; i++ {
-		si, _ := stack.PopAt(5)
-		pi, err := plates.PopAt(5)
-		if err != nil {
-			t.Fatal(err)
-		}
-		if pi != si {
-			t.Errorf("error stack PopAt. expected=%d, got=%d",
-				si, pi)
-		}
+	popPlates(t, plates, 0, 3)
+	popPlates(t, plates, 0, 2)
+	popPlates(t, plates, 2, 9)
+	popPlates(t, plates, 0, 1)
+	popPlates(t, plates, 0, 0)
+	popPlates(t, plates, 0, 7)
+}
+
+func popPlates(t *testing.T, plates *SetOfStacks, idx, expected int) {
+	pi, err := plates.PopAt(idx)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if pi != expected {
+		t.Errorf("error stack PopAt. expected=%d, got=%d", expected, pi)
 	}
 }
 

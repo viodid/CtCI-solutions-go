@@ -1,6 +1,9 @@
 package ch3
 
-import "github.com/viodid/ctci-solutions-go/stack"
+import (
+	"errors"
+	"github.com/viodid/ctci-solutions-go/stack"
+)
 
 type SetOfStacks struct {
 	stacks        []stack.Stack[int]
@@ -34,10 +37,18 @@ func (ss *SetOfStacks) Pop() (int, error) {
 }
 
 func (ss *SetOfStacks) PopAt(idx int) (int, error) {
-	currentStack := ss.stacks[idx/4]
-	out, err := currentStack.PopAt(idx%4)
-	if currentStack.Length() == 0 && len(ss.stacks) > 1 {
-		ss.stacks = ss.stacks[:len(ss.stacks)-1]
+	if idx >= len(ss.stacks) {
+		var zero int
+		return zero, errors.New("stack idx out of bounds")
 	}
-	return out, err
+	s := ss.stacks[idx]
+	out, err := s.Pop()
+	if err != nil {
+		var zero int
+		return zero, err
+	}
+	if s.Length() == 0 && len(ss.stacks) > 1 {
+		ss.stacks = append(ss.stacks[:idx], ss.stacks[idx+1:]...)
+	}
+	return out, nil
 }
