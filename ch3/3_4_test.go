@@ -9,7 +9,9 @@ func TestQueueViaStacks(t *testing.T) {
 	queue := queue.NewQueue[int]()
 	queueStack := NewQueueViaStacks[int]()
 
-	populateQueues(queue, queueStack)
+	if err := populateQueues(queue, queueStack); err != nil {
+		t.Fatal(err)
+	}
 
 	for i := 0; i < 10; i++ {
 		valQ, _ := queue.Peek()
@@ -33,9 +35,12 @@ func TestQueueViaStacks(t *testing.T) {
 	}
 }
 
-func populateQueues(queue *queue.Queue[int], queueStack *QueueViaStacks[int]) {
+func populateQueues(queue *queue.Queue[int], queueStack *QueueViaStacks[int]) error {
 	for i := range 10 {
+		if err := queueStack.Add(i); err != nil {
+			return err
+		}
 		queue.Add(i)
-		queueStack.Add(i)
 	}
+	return nil
 }
