@@ -11,6 +11,10 @@ const (
 
 type AnimalType string
 
+// This problem can also be solved by creating two separate
+// stacks, one for each animal, and storing an enqueue timestamp to retrieve
+// the oldest animal.
+// This would increase space but decrease time complexity in dequeue operations.
 type AnimalShelter struct {
 	q *queue.Queue[AnimalType]
 }
@@ -23,10 +27,12 @@ func (as *AnimalShelter) Enqueue(t AnimalType) {
 	as.q.Add(t)
 }
 
+// time: O(1) - space: O(1)
 func (as *AnimalShelter) DequeueAny() (AnimalType, error) {
 	return as.q.Remove()
 }
 
+// time: O(n) - space: O(n)
 func (as *AnimalShelter) DequeueCat() (AnimalType, error) {
 	bufferQueue := queue.NewQueue[AnimalType]()
 
@@ -61,6 +67,7 @@ func (as *AnimalShelter) DequeueCat() (AnimalType, error) {
 	return cat, nil
 }
 
+// time: O(n) - space: O(n)
 func (as *AnimalShelter) DequeueDog() (AnimalType, error) {
 	bufferQueue := queue.NewQueue[AnimalType]()
 
