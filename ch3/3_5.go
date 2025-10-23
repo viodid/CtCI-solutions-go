@@ -5,6 +5,7 @@ import (
 	"math"
 )
 
+// time: O(n^2) - space: O(n)
 func SortStack(s *stack.Stack[int]) error {
 	if s.IsEmpty() || s.Length() == 1 {
 		return nil
